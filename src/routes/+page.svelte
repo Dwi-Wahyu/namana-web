@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BentoGallery from '$lib/components/ui/bento-gallery.svelte';
+	import BottleOrder from '$lib/components/ui/bottle-order.svelte';
 	import { Leaf } from 'lucide-svelte';
 
 	let activeCategory = $state('Espresso');
@@ -79,6 +80,57 @@
 	let coffeePerWeek = $state(3);
 	let monthlySavings = $derived(coffeePerWeek * 4 * 2000);
 	let plasticSaved = $derived(coffeePerWeek * 4);
+
+	const storyFrames = [
+		{
+			type: 'image',
+			src: '/product/501226394_18509736802017362_5944014104648471794_n.jpg',
+			username: 'sarah.mks',
+			time: '2h',
+			caption: 'Cobalt Dirty Latte 💙',
+			progress: 65
+		},
+		{
+			type: 'image',
+			src: '/scenery/498280138_2167924453649630_8383188952732617144_n.jpg',
+			username: 'rizkyvlntn',
+			time: '5h',
+			caption: 'Vibes check ✨',
+			progress: 42
+		},
+		{
+			type: 'video',
+			src: '/video/catering-01.mp4',
+			username: 'namana.coffee',
+			time: '8h',
+			caption: 'Behind the bar 🎬',
+			progress: 78
+		},
+		{
+			type: 'image',
+			src: '/feature/624003152_18114974422541337_8190005105986273144_n.jpg',
+			username: 'coffeelover_',
+			time: '12h',
+			caption: 'Tumbler gang! 🌿',
+			progress: 90
+		},
+		{
+			type: 'image',
+			src: '/feature/624949019_2349820035457438_8495859316638335246_n.jpg',
+			username: 'dwi.wahyu',
+			time: '1d',
+			caption: 'Morning fuel ☕',
+			progress: 55
+		},
+		{
+			type: 'image',
+			src: '/product/515105493_18517103239017362_614143355468016190_n.jpg',
+			username: 'andin.mks',
+			time: '1d',
+			caption: 'V60 kind of day 🫶',
+			progress: 33
+		}
+	];
 </script>
 
 <!-- Navigation -->
@@ -90,6 +142,7 @@
 
 		<div class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex">
 			<a href="#menu" class="hover:text-primary">Menu</a>
+			<a href="#kopi-botol" class="hover:text-primary">Kopi Botol</a>
 			<a href="#location" class="hover:text-primary">Location</a>
 			<a href="#catering" class="hover:text-primary">Catering</a>
 			<a href="#loyalty" class="hover:text-primary">Join Loyalty</a>
@@ -287,31 +340,158 @@
 		</div>
 	</section>
 
+	<!-- Kopi Botol Order Section -->
+	<BottleOrder />
+
 	<!-- Social Currency Banner -->
-	<section class="bg-primary px-6 py-24 text-on-primary md:px-12">
-		<div class="mx-auto grid max-w-7xl gap-16 md:grid-cols-2 md:items-center">
-			<div>
-				<span class="font-headline text-[10px] font-bold tracking-[0.3em] uppercase opacity-80">
-					Social Currency
-				</span>
-				<h2
-					class="mt-6 font-headline text-6xl leading-[0.9] font-black tracking-tighter md:text-8xl"
-				>
-					5 STORIES =<br />1 FREE DRINK.
-				</h2>
-				<p class="mt-8 max-w-md font-body text-lg leading-relaxed opacity-90">
-					Capture the vibe, tag @NamanaCoffee. Reach 5 stories in a month and unlock the "Black
-					Card" tier for exclusive drops.
-				</p>
-				<button
-					class="mt-12 bg-surface-container-lowest px-10 py-4 font-headline text-sm font-bold tracking-widest text-primary transition-all hover:bg-white"
-				>
-					START YOUR JOURNEY
-				</button>
+	<section class="relative overflow-hidden bg-primary px-6 py-24 text-on-primary md:px-12 md:py-32">
+		<!-- Decorative Elements -->
+		<div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-white/[0.03] blur-3xl"></div>
+		<div class="pointer-events-none absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-[#003cd3]/30 blur-3xl"></div>
+
+		<div class="mx-auto max-w-7xl">
+			<!-- Header -->
+			<div class="mb-16 grid gap-12 lg:grid-cols-5 lg:items-end">
+				<div class="lg:col-span-3">
+					<span class="font-headline text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">
+						Snap · Share · Savor
+					</span>
+					<h2
+						class="mt-4 font-headline text-6xl leading-[0.85] font-black tracking-tighter md:text-8xl"
+					>
+						5 STORIES =<br /><span class="italic opacity-90">1 FREE DRINK.</span>
+					</h2>
+				</div>
+				<div class="lg:col-span-2">
+					<p class="max-w-sm font-body text-base leading-relaxed opacity-80">
+						Buat 5 story di Instagram setiap kali berkunjung ke
+						<strong class="text-white">@namana.coffee</strong>. Unggah satu story setiap
+						kunjungan berbeda, dan setelah lima kunjungan, nikmati minuman gratis pilihanmu!
+					</p>
+					<div class="mt-4 space-y-0.5 font-body text-[11px] leading-relaxed opacity-50">
+						<p>· Satu story = satu kunjungan</p>
+						<p>· Total 5 kunjungan untuk klaim minuman gratis</p>
+						<p>· Wajib tag @namana.coffee</p>
+					</div>
+					<button
+						class="mt-8 border border-white/30 bg-white/10 px-8 py-3 font-headline text-xs font-bold tracking-widest backdrop-blur-sm transition-all hover:bg-white hover:text-primary"
+					>
+						MULAI SEKARANG
+					</button>
+				</div>
 			</div>
-			<div class="grid grid-cols-2 gap-2 opacity-50 md:grid-cols-3">
-				{#each Array(6) as _, i (i)}
-					<div class="aspect-[9/16] border border-on-primary/20 bg-on-primary/10"></div>
+
+			<!-- Story Frames - Horizontal Scroll -->
+			<div class="story-scroll -mx-6 flex gap-4 overflow-x-auto px-6 pb-4 md:-mx-12 md:gap-5 md:px-12">
+				{#each storyFrames as story, i (i)}
+					<!-- Phone Frame -->
+					<div
+						class="story-phone group relative flex-shrink-0"
+						style="width: clamp(160px, 22vw, 220px); {i % 2 !== 0 ? 'transform: translateY(20px);' : ''}"
+					>
+						<!-- Glow Effect Behind -->
+						<div
+							class="absolute -inset-3 rounded-[2rem] bg-white/[0.06] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+						></div>
+
+						<!-- Phone Body -->
+						<div
+							class="relative overflow-hidden rounded-[1.25rem] border border-white/[0.12] bg-black/40 shadow-2xl ring-1 ring-inset ring-white/[0.06]"
+						>
+							<!-- Story Image/Video -->
+							<div class="relative aspect-[9/16] overflow-hidden">
+								{#if story.type === 'video'}
+									<video
+										src={story.src}
+										autoplay
+										loop
+										muted
+										playsinline
+										class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+									></video>
+								{:else}
+									<img
+										src={story.src}
+										alt={story.caption}
+										class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+									/>
+								{/if}
+
+								<!-- Top Gradient -->
+								<div
+									class="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-black/50 via-black/20 to-transparent"
+								></div>
+
+								<!-- Bottom Gradient -->
+								<div
+									class="absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+								></div>
+
+								<!-- Progress Bars (multi-segment like real IG) -->
+								<div class="absolute inset-x-0 top-0 z-20 flex gap-[3px] px-2 pt-2">
+									{#each Array(3) as _, seg (seg)}
+										<div class="h-[2px] flex-1 overflow-hidden rounded-full bg-white/25">
+											<div
+												class="h-full rounded-full bg-white/90"
+												style="width: {seg < 2 ? '100' : story.progress}%;"
+											></div>
+										</div>
+									{/each}
+								</div>
+
+								<!-- User Row -->
+								<div class="absolute top-4 right-2 left-2 z-20 flex items-center justify-between">
+									<div class="flex items-center gap-1.5">
+										<!-- IG Gradient Ring Avatar -->
+										<div class="rounded-full bg-gradient-to-tr from-[#feda75] via-[#fa7e1e] via-[#d62976] to-[#962fbf] p-[1.5px]">
+											<div
+												class="flex h-6 w-6 items-center justify-center rounded-full bg-black"
+											>
+												<span class="text-[7px] font-bold text-white">
+													{story.username.charAt(0).toUpperCase()}
+												</span>
+											</div>
+										</div>
+										<span class="text-[9px] font-semibold text-white drop-shadow-sm">
+											{story.username}
+										</span>
+										<span class="text-[8px] text-white/50">{story.time}</span>
+									</div>
+									<!-- Three Dot Menu -->
+									<svg class="h-3 w-3 text-white/70" viewBox="0 0 24 24" fill="currentColor">
+										<circle cx="12" cy="5" r="2" />
+										<circle cx="12" cy="12" r="2" />
+										<circle cx="12" cy="19" r="2" />
+									</svg>
+								</div>
+
+								<!-- Caption & Reply Bar (Bottom) -->
+								<div class="absolute inset-x-0 bottom-0 z-20 px-2.5 pb-2.5">
+									<!-- Caption -->
+									<p class="mb-2 text-[9px] font-medium text-white/90 drop-shadow-md">
+										{story.caption}
+									</p>
+									<!-- Reply Bar -->
+									<div class="flex items-center gap-1.5">
+										<div
+											class="flex-1 rounded-full border border-white/25 px-2.5 py-1"
+										>
+											<span class="text-[8px] text-white/40">Kirim pesan...</span>
+										</div>
+										<!-- Heart -->
+										<svg class="h-3.5 w-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+										</svg>
+										<!-- Share -->
+										<svg class="h-3.5 w-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<line x1="22" y1="2" x2="11" y2="13" />
+											<polygon points="22 2 15 22 11 13 2 9 22 2" />
+										</svg>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				{/each}
 			</div>
 		</div>
@@ -565,5 +745,24 @@
 		background-position:
 			0 0,
 			10px 10px;
+	}
+
+	/* Hide scrollbar but keep scroll functionality */
+	.story-scroll {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	.story-scroll::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Phone frame hover lift */
+	.story-phone {
+		transition:
+			transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+			filter 0.5s ease;
+	}
+	.story-phone:hover {
+		filter: brightness(1.05);
 	}
 </style>
