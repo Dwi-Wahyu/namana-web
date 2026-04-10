@@ -101,17 +101,12 @@
 
 			<!-- Product Image -->
 			<div class="relative order-1 lg:order-2">
-				<div class="group relative aspect-square overflow-hidden bg-primary/10">
-					<div
-						class="absolute inset-0 bg-primary opacity-0 transition-opacity duration-700 group-hover:opacity-10"
-					></div>
+				<div class="group relative aspect-square overflow-hidden bg-surface-container-high shadow-2xl">
 					<img
 						src={product.image}
 						alt={product.name}
-						class="h-full w-full scale-[0.8] object-cover grayscale-[0.2] transition-all duration-700 group-hover:scale-[0.85] group-hover:grayscale-0"
+						class="h-full w-full object-cover grayscale-[0.2] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
 					/>
-					<!-- Decorative frame -->
-					<div class="pointer-events-none absolute inset-0 border-[40px] border-primary/5"></div>
 				</div>
 
 				<!-- Price Tag -->
@@ -145,47 +140,6 @@
 			</div>
 		</div>
 	</section>
-
-	<!-- Gallery -->
-	{#if product.gallery && product.gallery.length > 0}
-		<section class="px-6 py-24 md:px-12">
-			<div class="mx-auto max-w-7xl">
-				<div class="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
-					<div>
-						<h2
-							class="font-headline text-5xl leading-none font-black tracking-tighter text-on-surface uppercase"
-						>
-							Captured by Temanna
-						</h2>
-						<p class="mt-4 font-body text-sm text-on-surface-variant opacity-60">
-							Community-curated digital blue-prints of the morning.
-						</p>
-					</div>
-					<a
-						href="#collective"
-						class="group flex items-center gap-3 font-headline text-xs font-bold tracking-widest text-primary uppercase"
-					>
-						Join the collective <ArrowRight
-							size={16}
-							class="transition-transform group-hover:translate-x-2"
-						/>
-					</a>
-				</div>
-
-				<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-					{#each product.gallery as img (img)}
-						<div class="group aspect-square overflow-hidden bg-surface-container-low">
-							<img
-								src={img}
-								alt="Gallery item"
-								class="h-full w-full object-cover grayscale-[0.5] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-							/>
-						</div>
-					{/each}
-				</div>
-			</div>
-		</section>
-	{/if}
 
 	<!-- Newsletter -->
 	<section class="bg-primary px-6 py-32 text-center text-on-primary md:px-12">

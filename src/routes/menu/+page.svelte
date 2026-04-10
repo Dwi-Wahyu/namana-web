@@ -120,7 +120,7 @@
 							product.special && 'ring-2 ring-primary ring-inset'
 						)}
 					>
-						<div class="relative aspect-[3/2] overflow-hidden bg-surface-container-low">
+						<div class="relative aspect-square overflow-hidden bg-surface-container-low">
 							{#if product.tag}
 								<div class="absolute top-3 left-3 z-10 bg-primary px-2 py-0.5 font-headline text-[7px] font-bold tracking-widest text-on-primary">
 									{product.tag}
@@ -140,11 +140,11 @@
 							/>
 						</div>
 
-						<div class="flex flex-col flex-1 p-5">
+						<div class="flex flex-col p-5">
 							<h3 class="font-headline text-lg font-black leading-tight tracking-tight uppercase">
 								{product.name}
 							</h3>
-							<p class="mt-2 flex-1 font-body text-xs text-on-surface-variant leading-relaxed opacity-70 line-clamp-2">
+							<p class="mt-2 font-body text-xs text-on-surface-variant leading-relaxed opacity-70 line-clamp-2">
 								{product.desc}
 							</p>
 							

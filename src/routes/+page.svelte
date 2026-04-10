@@ -82,15 +82,36 @@
 	let monthlySavings = $derived(coffeePerWeek * 4 * 2000);
 	let plasticSaved = $derived(coffeePerWeek * 4);
 
+	let scrollY = $state(0);
+	let isScrolled = $derived(scrollY > 50);
 </script>
+
+<svelte:window bind:scrollY />
 
 <!-- Navigation -->
 <nav
-	class="glass-nav fixed top-0 z-50 w-full border-b border-outline-variant/15 bg-surface-container-lowest/70 px-6 py-4 md:px-12"
+	class="fixed top-0 z-50 w-full transition-all duration-300 px-6 py-4 md:px-12 {isScrolled
+		? 'bg-primary shadow-lg border-b border-primary-dim py-3'
+		: 'bg-transparent border-b border-white/10'}"
 >
 	<div class="mx-auto flex max-w-7xl items-center justify-between">
-		<div class="font-headline text-2xl font-black tracking-tighter text-primary">NAMANA</div>
+		<div
+			class="font-headline text-2xl font-black tracking-tighter transition-colors duration-300 {isScrolled
+				? 'text-white'
+				: 'text-white'}"
+		>
+			NAMANA
+		</div>
 
+		<div
+			class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex {isScrolled
+				? 'text-white/90'
+				: 'text-white/90'}"
+		>
+			<a href="#menu" class="transition-colors hover:text-white">Menu</a>
+			<a href="#location" class="transition-colors hover:text-white">Location</a>
+			<a href="#catering" class="transition-colors hover:text-white">Catering</a>
+			<a href="#loyalty" class="transition-colors hover:text-white">Join Loyalty</a>
 		<div class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex">
 			<a href="#menu" class="hover:text-primary">Menu</a>
 			<a href="#kopi-botol" class="hover:text-primary">Kopi Botol</a>
@@ -101,7 +122,9 @@
 
 		<div class="flex items-center space-x-6">
 			<button
-				class="bg-primary px-6 py-2 font-headline text-xs font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
+				class="px-6 py-2 font-headline text-xs font-bold tracking-widest transition-all active:scale-95 {isScrolled
+					? 'bg-white text-primary hover:bg-white/90'
+					: 'bg-primary text-white hover:bg-primary-dim'}"
 			>
 				ORDER NOW
 			</button>
@@ -111,49 +134,51 @@
 
 <main class="overflow-hidden">
 	<!-- Hero Section -->
-	<section class="relative min-h-screen bg-surface">
-		<div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 md:items-stretch">
-			<div class="relative z-10 order-2 px-6 py-12 md:order-1 md:px-12 md:py-32">
-				<span
-					class="inline-block bg-primary px-3 py-1 font-headline text-[10px] font-bold tracking-[0.2em] text-on-primary"
-				>
-					HIGH PERFORMANCE CAFFEINE
-				</span>
-				<h1
-					class="mt-6 font-headline text-5xl leading-[0.9] font-black tracking-tighter md:text-7xl lg:text-8xl"
-				>
-					BREWED<br />FOR THE<br /><span class="text-primary italic">URBANITE</span>.
-				</h1>
-				<p class="mt-8 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
-					A digital-first "third space" in the heart of Makassar. Precise extractions, industrial
-					aesthetics, and zero-friction coffee culture.
-				</p>
-				<div class="mt-12 flex flex-wrap gap-4">
-					<button
-						class="border-2 bg-[#2e5bff] px-8 py-4 font-headline text-sm font-bold tracking-widest text-primary text-white transition-all hover:bg-primary/5"
-					>
-						LIHAT MENU
-					</button>
-					<button
-						class="border-2 border-primary px-8 py-4 font-headline text-sm font-bold tracking-widest text-primary transition-all hover:bg-primary/5"
-					>
-						RESERVASI TEMPAT
-					</button>
-				</div>
-			</div>
+	<section class="relative flex h-[100svh] items-center justify-center overflow-hidden bg-black text-white">
+		<!-- Background Image with Overlay -->
+		<div class="absolute inset-0 z-0">
+			<img
+				src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1920"
+				alt="Empty Aesthetic Coffee Shop"
+				class="h-full w-full object-cover opacity-60 grayscale-[0.2]"
+			/>
+			<div class="absolute inset-0 bg-black/50"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
+		</div>
 
-			<div class="relative z-10 order-1 md:order-2">
-				<div
-					class=" relative h-full min-h-[50vh] overflow-hidden bg-surface-container-high md:min-h-screen"
+		<div class="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
+			<span
+				class="inline-block font-headline text-[10px] font-bold tracking-[0.4em] text-primary uppercase opacity-90"
+			>
+				The Digital Third Space
+			</span>
+			<h1
+				class="mt-8 font-headline text-5xl leading-[1.1] font-black tracking-tighter md:text-7xl lg:text-8xl"
+			>
+				Charged with <span class="italic text-primary">energy.</span><br />
+				<span class="text-white/95">Inspired by the City.</span>
+			</h1>
+			<p class="mx-auto mt-10 max-w-lg font-body text-lg leading-relaxed text-white/80">
+				A digital-first sanctuary in the heart of Makassar. Precise extractions, industrial
+				minimalism, and zero-friction coffee culture for the high-performance urbanite.
+			</p>
+			<div class="mt-14 flex flex-wrap justify-center gap-6">
+				<button
+					class="rounded-full bg-primary px-12 py-5 font-headline text-sm font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
 				>
-					<img
-						src="/534315502_18525782728017362_1272087785705817765_n.jpg"
-						alt="Namana Interior"
-						class="h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 hover:scale-110"
-					/>
-				</div>
-				<!-- Signature Floating Element -->
+					LIHAT MENU
+				</button>
+				<button
+					class="rounded-full border border-white/30 bg-white/5 px-12 py-5 font-headline text-sm font-bold tracking-widest text-white backdrop-blur-md transition-all hover:bg-white/10 active:scale-95"
+				>
+					RESERVASI
+				</button>
 			</div>
+		</div>
+
+		<!-- Bottom Scroll Indicator -->
+		<div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+			<span class="material-symbols-outlined text-4xl">expand_more</span>
 		</div>
 	</section>
 
@@ -494,6 +519,67 @@
 		title="SHOT ON COBALT."
 		description="A collection of stunning landscapes. Drag to explore, click to expand."
 	/>
+
+	<!-- Location Section -->
+	<section id="location" class="bg-surface-container-low px-6 py-24 md:px-12 md:py-32">
+		<div class="mx-auto max-w-7xl">
+			<div class="grid gap-16 lg:grid-cols-2">
+				<div>
+					<span class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
+						Find Us
+					</span>
+					<h2
+						class="mt-4 font-headline text-5xl leading-tight font-black tracking-tighter md:text-6xl"
+					>
+						VISIT <span class="text-primary italic">US</span>.
+					</h2>
+					<p class="mt-8 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
+						Visit our flagship space. Designed for high-performance work sessions and precise
+						caffeine extractions.
+					</p>
+
+					<div class="mt-12 space-y-8">
+						<div>
+							<h4 class="font-headline text-sm font-bold tracking-widest uppercase opacity-60">
+								ADDRESS
+							</h4>
+							<p class="mt-2 font-body text-xl font-bold">
+								JL. KEBAHAGIAAN UTARA NO.144<br />TAMALANREA, MAKASSAR 90245
+							</p>
+						</div>
+						<div>
+							<h4 class="font-headline text-sm font-bold tracking-widest uppercase opacity-60">
+								CONTACT
+							</h4>
+							<p class="mt-2 font-body text-xl font-bold text-primary">08194094745</p>
+						</div>
+						<a
+							href="https://www.google.com/maps/dir/?api=1&destination=-5.133940221591248,119.50772966637625"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-block bg-primary px-8 py-4 font-headline text-sm font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
+						>
+							GET DIRECTIONS
+						</a>
+					</div>
+				</div>
+
+				<div
+					class="relative min-h-[400px] overflow-hidden bg-surface-container-high grayscale-[0.5] transition-all hover:grayscale-0"
+				>
+					<iframe
+						title="Namana Location"
+						width="100%"
+						height="100%"
+						style="border:0;"
+						loading="lazy"
+						allowfullscreen
+						src="https://maps.google.com/maps?q=-5.133940221591248,119.50772966637625&t=&z=15&ie=UTF8&iwloc=&output=embed"
+					></iframe>
+				</div>
+			</div>
+		</div>
+	</section>
 </main>
 
 <footer class="bg-inverse-surface px-6 pt-24 pb-12 text-on-primary md:px-12">
@@ -502,7 +588,7 @@
 			<div>
 				<div class="font-headline text-4xl font-black tracking-tighter text-primary">NAMANA</div>
 				<p class="mt-8 max-w-xs font-body text-sm leading-relaxed opacity-60">
-					JL. A. P. PETTARANI NO. 102<br />MAKASSAR, INDONESIA
+					JL. KEBAHAGIAAN UTARA NO. 144<br />TAMALANREA, MAKASSAR 90245
 				</p>
 			</div>
 

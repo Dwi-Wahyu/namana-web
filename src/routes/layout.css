@@ -61,6 +61,7 @@
   --radius-full: 0.75rem;
 
   --font-headline: 'Space Grotesk', sans-serif;
+  --font-display: 'Playfair Display', serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-label: 'Plus Jakarta Sans', sans-serif;
 }
@@ -76,6 +77,10 @@
 @layer utilities {
   .font-headline {
     font-family: var(--font-headline);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
   }
 
   .material-symbols-outlined {
