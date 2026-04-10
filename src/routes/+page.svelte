@@ -1,5 +1,7 @@
 <script lang="ts">
 	import BentoGallery from '$lib/components/ui/bento-gallery.svelte';
+	import BottleOrder from '$lib/components/ui/bottle-order.svelte';
+	import StoryProfiles from '$lib/components/ui/story-profiles.svelte';
 	import { Leaf } from 'lucide-svelte';
 
 	let activeCategory = $state('Espresso');
@@ -110,6 +112,12 @@
 			<a href="#location" class="transition-colors hover:text-white">Location</a>
 			<a href="#catering" class="transition-colors hover:text-white">Catering</a>
 			<a href="#loyalty" class="transition-colors hover:text-white">Join Loyalty</a>
+		<div class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex">
+			<a href="#menu" class="hover:text-primary">Menu</a>
+			<a href="#kopi-botol" class="hover:text-primary">Kopi Botol</a>
+			<a href="#location" class="hover:text-primary">Location</a>
+			<a href="#catering" class="hover:text-primary">Catering</a>
+			<a href="#loyalty" class="hover:text-primary">Join Loyalty</a>
 		</div>
 
 		<div class="flex items-center space-x-6">
@@ -308,35 +316,11 @@
 		</div>
 	</section>
 
-	<!-- Social Currency Banner -->
-	<section class="bg-primary px-6 py-24 text-on-primary md:px-12">
-		<div class="mx-auto grid max-w-7xl gap-16 md:grid-cols-2 md:items-center">
-			<div>
-				<span class="font-headline text-[10px] font-bold tracking-[0.3em] uppercase opacity-80">
-					Social Currency
-				</span>
-				<h2
-					class="mt-6 font-headline text-6xl leading-[0.9] font-black tracking-tighter md:text-8xl"
-				>
-					5 STORIES =<br />1 FREE DRINK.
-				</h2>
-				<p class="mt-8 max-w-md font-body text-lg leading-relaxed opacity-90">
-					Capture the vibe, tag @NamanaCoffee. Reach 5 stories in a month and unlock the "Black
-					Card" tier for exclusive drops.
-				</p>
-				<button
-					class="mt-12 bg-surface-container-lowest px-10 py-4 font-headline text-sm font-bold tracking-widest text-primary transition-all hover:bg-white"
-				>
-					START YOUR JOURNEY
-				</button>
-			</div>
-			<div class="grid grid-cols-2 gap-2 opacity-50 md:grid-cols-3">
-				{#each Array(6) as _, i (i)}
-					<div class="aspect-[9/16] border border-on-primary/20 bg-on-primary/10"></div>
-				{/each}
-			</div>
-		</div>
-	</section>
+	<!-- Kopi Botol Order Section -->
+	<BottleOrder />
+
+	<!-- Social Currency - IG Stories -->
+	<StoryProfiles />
 
 	<!-- Bring Your Own Tumbler Section -->
 	<section class="relative overflow-hidden bg-white px-6 py-24 md:px-12 md:py-32">
