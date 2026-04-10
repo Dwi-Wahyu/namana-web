@@ -67,7 +67,10 @@
 	function orderViaWhatsApp() {
 		const items = bottles
 			.filter((b) => quantities[b.id] > 0)
-			.map((b) => `• ${b.name} (${b.size}) x${quantities[b.id]} — Rp${formatPrice(b.price * quantities[b.id])}`)
+			.map(
+				(b) =>
+					`• ${b.name} (${b.size}) x${quantities[b.id]} — Rp${formatPrice(b.price * quantities[b.id])}`
+			)
 			.join('\n');
 
 		const message = encodeURIComponent(
@@ -78,10 +81,16 @@
 	}
 </script>
 
-<section id="kopi-botol" class="relative overflow-hidden bg-surface-container-low px-6 py-24 md:px-12 md:py-32">
+<section
+	id="kopi-botol"
+	class="relative overflow-hidden bg-surface-container-low px-4 pb-12 md:px-12"
+>
 	<!-- Subtle Background Pattern -->
 	<div class="pointer-events-none absolute inset-0 opacity-[0.02]">
-		<div class="h-full w-full" style="background-image: radial-gradient(var(--color-primary) 1px, transparent 1px); background-size: 32px 32px;"></div>
+		<div
+			class="h-full w-full"
+			style="background-image: radial-gradient(var(--color-primary) 1px, transparent 1px); background-size: 32px 32px;"
+		></div>
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-7xl">
@@ -94,12 +103,14 @@
 						Grab & Go
 					</span>
 				</div>
-				<h2 class="font-headline text-5xl leading-[0.9] font-black tracking-tighter uppercase md:text-7xl">
+				<h2
+					class="font-headline text-5xl leading-[0.9] font-black tracking-tighter uppercase md:text-7xl"
+				>
 					KOPI<br /><span class="text-primary italic">BOTOL.</span>
 				</h2>
 				<p class="mt-6 max-w-lg font-body text-base leading-relaxed text-on-surface-variant">
-					Mager keluar rumah tapi stock kopi habis? Amankan Kopi'Na kemasan 500ml — lebih hemat
-					dan siapnya banyak! Freshly made by order setiap hari.
+					Mager keluar rumah tapi stock kopi habis? Amankan Kopi'Na kemasan 500ml — lebih hemat dan
+					siapnya banyak! Freshly made by order setiap hari.
 				</p>
 			</div>
 
@@ -123,7 +134,7 @@
 						class="flex items-center gap-2 bg-[#25D366] px-6 py-3 font-headline text-xs font-bold tracking-widest text-white transition-all hover:bg-[#1fb855] active:scale-95"
 					>
 						<MessageCircle size={16} />
-						ORDER VIA WA
+						ORDER
 					</button>
 				</div>
 			{/if}
@@ -145,12 +156,14 @@
 					{/if}
 
 					<!-- Product Image -->
-					<div class="relative overflow-hidden bg-gradient-to-b from-surface-container-high/50 to-surface-container-low/30 p-8 md:p-12">
+					<div
+						class="relative overflow-hidden bg-linear-to-b from-surface-container-high/50 to-surface-container-low/30 p-8 md:p-12"
+					>
 						<div class="relative mx-auto w-48 md:w-56">
 							<img
 								src={bottle.image}
 								alt={bottle.name}
-								class="h-full w-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105 group-hover:-rotate-2"
+								class="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105 group-hover:-rotate-2"
 							/>
 						</div>
 						<!-- Size Badge -->
@@ -168,16 +181,16 @@
 								<h3 class="font-headline text-2xl font-black tracking-tight md:text-3xl">
 									{bottle.name}
 								</h3>
-								<p class="mt-1 font-headline text-xs font-bold tracking-widest text-on-surface-variant uppercase">
+								<p
+									class="mt-1 font-headline text-xs font-bold tracking-widest text-on-surface-variant uppercase"
+								>
 									{bottle.variant}
 								</p>
 							</div>
 							<div class="text-right">
+								<p class="font-body text-xs tracking-wider text-on-surface-variant uppercase">Rp</p>
 								<p class="font-headline text-2xl font-black text-primary md:text-3xl">
 									{(bottle.price / 1000).toFixed(0)}K
-								</p>
-								<p class="font-body text-[10px] tracking-wider text-on-surface-variant uppercase">
-									Rp{formatPrice(bottle.price)}
 								</p>
 							</div>
 						</div>
@@ -187,17 +200,18 @@
 						</p>
 
 						<!-- Quantity Controls -->
-						<div class="mt-6 flex items-center justify-between border-t border-outline-variant/15 pt-6">
-							<div class="flex items-center gap-1">
+						<div
+							class="mt-6 flex flex-col items-center justify-between gap-2 border-t border-outline-variant/15 pt-6 md:flex-row"
+						>
+							<div class="flex w-full items-center gap-1">
 								<button
 									onclick={() => decrement(bottle.id)}
-									disabled={quantities[bottle.id] === 0}
 									class="flex h-10 w-10 items-center justify-center border border-outline-variant/20 bg-surface-container-low text-on-surface transition-all hover:border-primary hover:text-primary active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
 								>
 									<Minus size={16} />
 								</button>
 								<div
-									class="flex h-10 w-14 items-center justify-center border-y border-outline-variant/20 font-headline text-lg font-bold"
+									class="flex h-10 w-full items-center justify-center border-y border-outline-variant/20 font-headline text-lg font-bold md:w-14"
 								>
 									{quantities[bottle.id]}
 								</div>
@@ -216,14 +230,6 @@
 								>
 									Rp{formatPrice(bottle.price * quantities[bottle.id])}
 								</p>
-							{:else}
-								<button
-									onclick={() => increment(bottle.id)}
-									class="flex items-center gap-2 bg-primary px-5 py-2.5 font-headline text-[10px] font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
-								>
-									<ShoppingCart size={14} />
-									TAMBAH
-								</button>
 							{/if}
 						</div>
 					</div>
@@ -233,21 +239,27 @@
 
 		<!-- Info Banner -->
 		<div class="mt-12 grid gap-4 sm:grid-cols-3">
-			<div class="flex items-center gap-4 border border-outline-variant/10 bg-surface-container-lowest p-5">
+			<div
+				class="flex items-center gap-4 border border-outline-variant/10 bg-surface-container-lowest p-5"
+			>
 				<span class="material-symbols-outlined text-2xl text-primary">local_shipping</span>
 				<div>
 					<p class="font-headline text-xs font-bold tracking-wider uppercase">Freshly Made</p>
 					<p class="mt-0.5 text-xs text-on-surface-variant">Dibuat fresh setiap hari</p>
 				</div>
 			</div>
-			<div class="flex items-center gap-4 border border-outline-variant/10 bg-surface-container-lowest p-5">
+			<div
+				class="flex items-center gap-4 border border-outline-variant/10 bg-surface-container-lowest p-5"
+			>
 				<span class="material-symbols-outlined text-2xl text-primary">verified</span>
 				<div>
 					<p class="font-headline text-xs font-bold tracking-wider uppercase">Premium Beans</p>
 					<p class="mt-0.5 text-xs text-on-surface-variant">100% biji kopi pilihan</p>
 				</div>
 			</div>
-			<div class="flex items-center gap-4 border border-outline-variant/10 bg-surface-container-lowest p-5">
+			<div
+				class="flex items-center gap-4 border border-outline-variant/10 bg-surface-container-lowest p-5"
+			>
 				<span class="material-symbols-outlined text-2xl text-primary">inventory_2</span>
 				<div>
 					<p class="font-headline text-xs font-bold tracking-wider uppercase">Stock Ready</p>
@@ -273,7 +285,7 @@
 					class="flex items-center gap-2 bg-[#25D366] px-6 py-3 font-headline text-xs font-bold tracking-widest text-white transition-all hover:bg-[#1fb855] active:scale-95"
 				>
 					<MessageCircle size={16} />
-					ORDER VIA WA
+					ORDER
 				</button>
 			</div>
 		{/if}

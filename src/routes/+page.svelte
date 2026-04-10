@@ -3,6 +3,7 @@
 	import BottleOrder from '$lib/components/ui/bottle-order.svelte';
 	import StoryProfiles from '$lib/components/ui/story-profiles.svelte';
 	import { Leaf } from 'lucide-svelte';
+	import { fly } from 'svelte/transition';
 
 	let activeCategory = $state('Espresso');
 
@@ -84,57 +85,109 @@
 
 	let scrollY = $state(0);
 	let isScrolled = $derived(scrollY > 50);
+	let isMenuOpen = $state(false);
+
+	const navLinks = [
+		{ name: 'Menu', href: '#menu' },
+		{ name: 'Location', href: '#location' },
+		{ name: 'Catering', href: '#catering' }
+	];
 </script>
 
 <svelte:window bind:scrollY />
 
 <!-- Navigation -->
 <nav
-	class="fixed top-0 z-50 w-full transition-all duration-300 px-6 py-4 md:px-12 {isScrolled
-		? 'bg-primary shadow-lg border-b border-primary-dim py-3'
-		: 'bg-transparent border-b border-white/10'}"
+	class="fixed top-0 z-50 w-full overflow-hidden transition-all duration-300 ease-out {isScrolled ||
+	isMenuOpen
+		? 'bg-primary shadow-lg backdrop-blur-xl'
+		: 'bg-transparent'} {isMenuOpen ? 'flex h-screen flex-col' : 'h-16 md:h-24'}"
 >
-	<div class="mx-auto flex max-w-7xl items-center justify-between">
-		<div
-			class="font-headline text-2xl font-black tracking-tighter transition-colors duration-300 {isScrolled
-				? 'text-white'
-				: 'text-white'}"
-		>
-			NAMANA
+	<div
+		class="mx-auto flex w-full max-w-7xl shrink-0 items-center justify-between px-6 py-4 md:px-12 md:py-6"
+	>
+		<!-- Left: Logo -->
+		<div class="flex flex-1 justify-start">
+			<img src="/logo.png" alt="Namana Logo" class="h-8 w-auto brightness-0 invert" />
 		</div>
 
+		<!-- Center: Desktop Menu -->
 		<div
-			class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex {isScrolled
-				? 'text-white/90'
-				: 'text-white/90'}"
+			class="hidden flex-1 items-center justify-center space-x-8 font-label text-xs font-bold tracking-widest text-white/90 uppercase md:flex"
 		>
-			<a href="#menu" class="transition-colors hover:text-white">Menu</a>
-			<a href="#location" class="transition-colors hover:text-white">Location</a>
-			<a href="#catering" class="transition-colors hover:text-white">Catering</a>
-			<a href="#loyalty" class="transition-colors hover:text-white">Join Loyalty</a>
-		<div class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex">
-			<a href="#menu" class="hover:text-primary">Menu</a>
-			<a href="#kopi-botol" class="hover:text-primary">Kopi Botol</a>
-			<a href="#location" class="hover:text-primary">Location</a>
-			<a href="#catering" class="hover:text-primary">Catering</a>
-			<a href="#loyalty" class="hover:text-primary">Join Loyalty</a>
+			{#each navLinks as link (link.name)}
+				<a href={link.href} class="transition-colors hover:text-white">{link.name}</a>
+			{/each}
 		</div>
 
-		<div class="flex items-center space-x-6">
+		<!-- Right: Desktop Reservasi & Mobile Toggle -->
+		<div class="flex flex-1 items-center justify-end gap-4">
 			<button
-				class="px-6 py-2 font-headline text-xs font-bold tracking-widest transition-all active:scale-95 {isScrolled
+				class="hidden px-6 py-2 font-headline text-xs font-bold tracking-widest transition-all active:scale-95 md:block {isScrolled
 					? 'bg-white text-primary hover:bg-white/90'
 					: 'bg-primary text-white hover:bg-primary-dim'}"
 			>
-				ORDER NOW
+				RESERVASI
+			</button>
+
+			<!-- Mobile Toggle Button -->
+			<button
+				onclick={() => (isMenuOpen = !isMenuOpen)}
+				class="relative z-50 flex h-10 w-10 items-center justify-center text-white md:hidden"
+				aria-label="Toggle Menu"
+			>
+				<div class="relative h-6 w-6">
+					<span
+						class="absolute left-0 h-0.5 w-6 bg-current transition-all duration-300 {isMenuOpen
+							? 'top-3 rotate-42'
+							: 'top-1'}"
+					></span>
+					<span
+						class="absolute top-3 left-0 h-0.5 w-6 bg-current transition-all duration-300 {isMenuOpen
+							? 'scale-x-0 opacity-0'
+							: 'scale-x-100 opacity-100'}"
+					></span>
+					<span
+						class="absolute left-0 h-0.5 w-6 bg-current transition-all duration-300 {isMenuOpen
+							? 'top-3 -rotate-42'
+							: 'top-5'}"
+					></span>
+				</div>
 			</button>
 		</div>
 	</div>
+
+	<!-- Mobile Menu Overlay -->
+	{#if isMenuOpen}
+		<div class="flex flex-1 flex-col items-center justify-center gap-10 px-6 pb-20 md:hidden">
+			{#each navLinks as link, i (link.name)}
+				<div in:fly={{ y: 30, duration: 300, delay: 100 + i * 50 }}>
+					<a
+						href={link.href}
+						onclick={() => (isMenuOpen = false)}
+						class="block font-headline text-5xl font-black tracking-tighter text-white"
+					>
+						{link.name}
+					</a>
+				</div>
+			{/each}
+
+			<div in:fly={{ y: 30, duration: 300, delay: 100 + navLinks.length * 50 }}>
+				<button
+					class="w-full max-w-xs bg-white px-12 py-5 font-headline text-sm font-bold tracking-widest text-primary shadow-2xl active:scale-95"
+				>
+					RESERVASI SEKARANG
+				</button>
+			</div>
+		</div>
+	{/if}
 </nav>
 
 <main class="overflow-hidden">
 	<!-- Hero Section -->
-	<section class="relative flex h-[100svh] items-center justify-center overflow-hidden bg-black text-white">
+	<section
+		class="relative flex h-svh items-center justify-center overflow-hidden bg-black text-white"
+	>
 		<!-- Background Image with Overlay -->
 		<div class="absolute inset-0 z-0">
 			<img
@@ -148,21 +201,23 @@
 
 		<div class="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
 			<span
-				class="inline-block font-headline text-[10px] font-bold tracking-[0.4em] text-primary uppercase opacity-90"
+				class="inline-block rounded-sm bg-primary px-2 py-1 font-headline text-[10px] font-bold tracking-[0.4em] text-on-primary uppercase opacity-90"
 			>
 				The Digital Third Space
 			</span>
 			<h1
-				class="mt-8 font-headline text-5xl leading-[1.1] font-black tracking-tighter md:text-7xl lg:text-8xl"
+				class="mt-4 font-headline text-4xl leading-[1.1] font-black tracking-tighter md:text-6xl lg:text-7xl"
 			>
-				Charged with <span class="italic text-primary">energy.</span><br />
-				<span class="text-white/95">Inspired by the City.</span>
+				BREWED FOR THE<br />
+				<span class="text-primary italic">URBANITE.</span>
 			</h1>
-			<p class="mx-auto mt-10 max-w-lg font-body text-lg leading-relaxed text-white/80">
+			<p
+				class="mx-auto mt-10 hidden max-w-lg font-body text-lg leading-relaxed text-white/80 md:block"
+			>
 				A digital-first sanctuary in the heart of Makassar. Precise extractions, industrial
 				minimalism, and zero-friction coffee culture for the high-performance urbanite.
 			</p>
-			<div class="mt-14 flex flex-wrap justify-center gap-6">
+			<div class="mt-4 hidden flex-wrap justify-center gap-6 md:mt-14 md:flex">
 				<button
 					class="rounded-full bg-primary px-12 py-5 font-headline text-sm font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
 				>
@@ -175,110 +230,44 @@
 				</button>
 			</div>
 		</div>
-
-		<!-- Bottom Scroll Indicator -->
-		<div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-			<span class="material-symbols-outlined text-4xl">expand_more</span>
-		</div>
-	</section>
-
-	<!-- Space Philosophy Section -->
-	<section class="bg-surface-container-low px-6 py-24 md:px-12 md:py-32">
-		<div class="mx-auto grid max-w-7xl gap-16 md:grid-cols-2">
-			<div>
-				<span class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
-					Space Philosophy
-				</span>
-				<h2
-					class="mt-4 font-headline text-5xl leading-tight font-black tracking-tighter md:text-6xl"
-				>
-					THE THIRD SPACE<br />EVOLUTION.
-				</h2>
-				<p class="mt-8 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
-					Namana isn't just a cafe; it's a productivity hub. We've optimized every square inch for
-					the high-performance urbanite, balancing hyper-fast fiber connectivity with editorial
-					design.
-				</p>
-
-				<div class="mt-12 space-y-6">
-					<div class="flex items-start gap-4">
-						<span class="material-symbols-outlined text-primary">bolt</span>
-						<div>
-							<h4 class="font-headline text-sm font-bold tracking-widest uppercase">GIGABIT HUB</h4>
-							<p class="mt-1 text-sm text-on-surface-variant">
-								Uninterrupted connectivity for your digital workflow.
-							</p>
-						</div>
-					</div>
-					<div class="flex items-start gap-4">
-						<span class="material-symbols-outlined text-primary">architecture</span>
-						<div>
-							<h4 class="font-headline text-sm font-bold tracking-widest uppercase">
-								INDUSTRIAL ERGONOMICS
-							</h4>
-							<p class="mt-1 text-sm text-on-surface-variant">
-								Furniture designed for long-stay deep work sessions.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="relative grid grid-cols-2 gap-4">
-				<div class="pt-12">
-					<img
-						src="/scenery/498280138_2167924453649630_8383188952732617144_n.jpg"
-						alt="Workspace"
-						class="aspect-square w-full object-cover grayscale transition-all hover:grayscale-0"
-					/>
-				</div>
-				<div class="flex aspect-[3/4] items-center justify-center bg-primary/10 p-8 text-center">
-					<h3 class="font-headline text-4xl font-black text-primary italic">
-						Café<br />culture<br />2.0
-					</h3>
-				</div>
-				<div class="col-span-2 -mt-12 ml-12 overflow-hidden border-8 border-surface-container-low">
-					<img
-						src="/scenery/502734466_1416529052708555_837181136922468108_n.jpg"
-						alt="Vibe"
-						class="h-64 w-full object-cover grayscale transition-all hover:grayscale-0"
-					/>
-				</div>
-			</div>
-		</div>
 	</section>
 
 	<!-- Signatures Section -->
-	<section id="menu" class="bg-surface px-6 py-24 md:px-12 md:py-32">
+	<section id="menu" class="bg-surface px-4 py-16 md:px-12 md:py-32">
 		<div class="mx-auto max-w-7xl">
-			<div class="flex flex-col items-end justify-between gap-8 md:flex-row md:items-center">
-				<h2 class="font-headline text-6xl font-black tracking-tighter italic md:text-8xl">
-					SIGNATURES.
-				</h2>
-				<div class="flex flex-wrap items-center justify-end gap-4">
-					<div class="flex gap-2">
-						{#each categories as category (category)}
-							<button
-								onclick={() => (activeCategory = category)}
-								class="px-4 py-2 font-headline text-[10px] font-bold tracking-widest uppercase transition-all
-                            {activeCategory === category
-									? 'bg-primary text-on-primary'
-									: 'bg-surface-container-highest text-on-surface hover:bg-surface-container-high'}"
-							>
-								{category}
-							</button>
-						{/each}
-					</div>
-					<a
-						href="/menu"
-						class="bg-primary px-6 py-2 font-headline text-[10px] font-bold tracking-widest text-on-primary uppercase transition-all hover:bg-primary-dim active:scale-95"
-					>
-						LIHAT SEMUA MENU
-					</a>
+			<!-- Header & Filters -->
+			<div class="flex flex-col gap-10">
+				<div class="max-w-2xl">
+					<h2 class="font-headline text-5xl font-black tracking-tighter italic md:text-7xl">
+						MENU <span class="text-primary">UNGGULAN.</span>
+					</h2>
+					<p class="mt-4 font-body text-lg text-on-surface-variant/70">
+						Koleksi pilihan ekstraksi kopi terbaik dan racikan musiman yang dirancang untuk dinamika
+						urban.
+					</p>
+				</div>
+
+				<div class="flex flex-wrap gap-8">
+					{#each categories as category (category)}
+						<button
+							onclick={() => (activeCategory = category)}
+							class="relative py-2 font-headline text-[10px] font-bold tracking-widest uppercase transition-all
+                        {activeCategory === category
+								? 'text-primary'
+								: 'text-on-surface-variant/50 hover:text-on-surface'}"
+						>
+							{category}
+							<div
+								class="absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-500 ease-out
+                            {activeCategory === category ? 'w-full' : 'w-0'}"
+							></div>
+						</button>
+					{/each}
 				</div>
 			</div>
 
-			<div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+			<!-- Product Grid -->
+			<div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 				{#each products.filter((p) => p.category === activeCategory || activeCategory === 'Espresso') as product (product.id)}
 					<div class="group relative bg-surface-container-low p-6 transition-all hover:bg-white">
 						{#if product.tag}
@@ -313,276 +302,306 @@
 					</div>
 				{/each}
 			</div>
+
+			<!-- Bottom Action -->
+			<div class="mt-16 flex justify-center">
+				<a
+					href="/menu"
+					class="w-full max-w-md bg-primary py-5 text-center font-headline text-xs font-bold tracking-[0.2em] text-on-primary text-white uppercase transition-all hover:bg-primary-dim active:scale-95 md:w-auto md:px-16"
+				>
+					LIHAT SEMUA MENU
+				</a>
+			</div>
 		</div>
 	</section>
 
-	<!-- Kopi Botol Order Section -->
-	<BottleOrder />
+	<!-- Space Philosophy Section -->
+	<section class="bg-surface-container-low py-16">
+		<!-- Kopi Botol Order Section -->
+		<BottleOrder />
 
-	<!-- Social Currency - IG Stories -->
-	<StoryProfiles />
+		<!-- Social Currency - IG Stories -->
+		<StoryProfiles />
 
-	<!-- Bring Your Own Tumbler Section -->
-	<section class="relative overflow-hidden bg-white px-6 py-24 md:px-12 md:py-32">
-		<!-- Rattan Texture Background -->
-		<div class="rattan-texture pointer-events-none absolute inset-0 opacity-[0.03]"></div>
+		<!-- Bring Your Own Tumbler Section -->
+		<section class="relative overflow-hidden bg-white px-4 py-16 md:px-12 md:py-32">
+			<!-- Rattan Texture Background -->
+			<div class="rattan-texture pointer-events-none absolute inset-0 opacity-[0.03]"></div>
 
-		<div class="relative z-10 mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-			<!-- Primary Visual -->
-			<div class="relative order-2 lg:order-1">
-				<div class="relative flex items-center justify-center">
-					<!-- Blue Tumbler -->
-					<div
-						class="group relative z-20 w-64 -rotate-6 transition-transform duration-700 hover:rotate-0 md:w-80"
-					>
-						<img
-							src="/feature/624003152_18114974422541337_8190005105986273144_n.jpg"
-							alt="Royal Cobalt Tumbler"
-							class="aspect-[4/5] w-full object-cover shadow-2xl grayscale-[0.3] transition-all duration-700 group-hover:grayscale-0"
-						/>
+			<div class="relative z-10 mx-auto max-w-7xl">
+				<!-- Content & Calculator -->
+				<div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+					<div>
 						<div
-							class="absolute -top-4 -right-4 bg-primary px-6 py-3 font-headline text-sm font-black tracking-tighter text-on-primary shadow-xl"
+							class="mb-6 inline-block bg-primary px-4 py-2 font-headline text-[10px] font-black tracking-widest text-on-primary"
 						>
 							CASHBACK 2RB
 						</div>
+
+						<h2
+							class="mb-8 font-headline text-5xl leading-[0.9] font-black tracking-tighter uppercase md:text-7xl"
+						>
+							Bawa Tumbler,<br /><span class="text-primary">Hemat</span> Lebih Banyak!
+						</h2>
+
+						<p class="mb-10 max-w-lg font-body text-lg leading-relaxed text-on-surface-variant">
+							Setiap kali temanNa membawa tumbler sendiri, nikmati diskon spesial sebagai upaya kita
+							bersama mengurangi limbah plastik. Kurangi sampah, nikmati kopi lebih lama!
+						</p>
 					</div>
-					<!-- Black Tumbler (Contrast) -->
-					<div
-						class="absolute z-10 w-56 translate-x-12 translate-y-8 rotate-12 opacity-40 grayscale transition-all duration-700 group-hover:grayscale-0 md:w-72"
-					>
-						<img
-							src="/656192897_18577713091017362_7078097776712408698_n.jpg"
-							alt="Modern Black Tumbler"
-							class="aspect-[4/5] w-full object-cover shadow-xl"
-						/>
+
+					<!-- Savings Calculator with peeking Tumbler -->
+					<div class="relative w-full max-w-2xl md:mt-12 lg:mt-0 lg:ml-auto">
+						<!-- Tumbler peeking from behind -->
+						<div
+							class="pointer-events-none absolute -top-20 left-full z-0 w-64 -translate-x-1/2 opacity-40 transition-transform duration-700 hover:scale-110 md:-top-40 md:w-80"
+						>
+							<img
+								src="/tumbler_removed_bg.png"
+								alt="Namana Signature Tumblers"
+								class="w-full drop-shadow-[0_20px_40px_rgba(8,70,237,0.15)]"
+							/>
+						</div>
+
+						<!-- Calculator Card -->
+						<div
+							class="relative z-10 overflow-hidden border border-outline-variant/10 bg-surface-container-low p-8 shadow-2xl backdrop-blur-sm md:p-12"
+						>
+							<div
+								class="absolute top-0 right-0 h-full w-1 bg-[repeating-linear-gradient(0deg,#0846ed,#0846ed_2px,transparent_2px,transparent_4px)] opacity-20"
+							></div>
+
+							<div class="relative z-10 text-left">
+								<label
+									for="coffee-range"
+									class="mb-6 flex flex-col justify-between gap-4 font-headline text-[10px] font-bold tracking-widest uppercase sm:flex-row sm:items-center"
+								>
+									<span>Berapa kali temanNa ngopi dalam seminggu?</span>
+									<span class="text-2xl font-black text-primary">{coffeePerWeek}x</span>
+								</label>
+								<input
+									id="coffee-range"
+									type="range"
+									min="1"
+									max="21"
+									bind:value={coffeePerWeek}
+									class="mb-8 h-1 w-full cursor-pointer appearance-none bg-surface-container-highest accent-primary"
+								/>
+
+								<div
+									class="grid grid-cols-1 gap-4 border-t border-outline-variant/15 pt-8 md:grid-cols-2 md:gap-8"
+								>
+									<div>
+										<p class="font-headline text-4xl leading-none font-black text-primary">
+											Rp{(monthlySavings / 1000).toFixed(0)}K
+										</p>
+										<p
+											class="mt-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
+										>
+											Hemat per bulan
+										</p>
+									</div>
+									<div>
+										<p class="font-headline text-4xl leading-none font-black text-primary">
+											{plasticSaved}
+										</p>
+										<p
+											class="mt-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
+										>
+											Gelas diselamatkan
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+		</section>
 
-			<!-- Content & Calculator -->
-			<div class="order-1 lg:order-2">
-				<div class="mb-6 flex items-center gap-3">
-					<Leaf class="text-primary" size={24} />
-					<span class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
-						Eco-Sustainability
+		<!-- Catering Section -->
+		<section id="catering" class="px-4 py-16 md:px-12 md:py-32">
+			<div class="mx-auto grid max-w-7xl md:gap-20 lg:grid-cols-2">
+				<div class="bg-surface-container-low md:p-12">
+					<span
+						class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase md:hidden"
+					>
+						Namana For Business
 					</span>
-				</div>
-
-				<h2
-					class="mb-8 font-headline text-5xl leading-[0.9] font-black tracking-tighter uppercase md:text-6xl"
-				>
-					Bawa Tumbler,<br /><span class="text-primary">Hemat</span> Lebih Banyak!
-				</h2>
-
-				<p class="mb-12 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
-					Setiap kali temanNa membawa tumbler sendiri, nikmati diskon spesial sebagai upaya kita
-					bersama mengurangi limbah plastik. Kurangi sampah, nikmati kopi lebih lama!
-				</p>
-
-				<!-- Savings Calculator -->
-				<div
-					class="relative overflow-hidden border border-outline-variant/10 bg-surface-container-low p-8"
-				>
-					<div
-						class="absolute top-0 right-0 h-full w-1 bg-[repeating-linear-gradient(0deg,#0846ed,#0846ed_2px,transparent_2px,transparent_4px)] opacity-20"
-					></div>
-
-					<div class="relative z-10">
-						<label
-							for="coffee-range"
-							class="mb-6 block font-headline text-[10px] font-bold tracking-widest uppercase"
-						>
-							Berapa kali temanNa ngopi dalam seminggu?
-						</label>
-						<input
-							id="coffee-range"
-							type="range"
-							min="1"
-							max="21"
-							bind:value={coffeePerWeek}
-							class="mb-8 h-1 w-full cursor-pointer appearance-none bg-surface-container-highest accent-primary"
-						/>
-
-						<div class="grid grid-cols-2 gap-8 border-t border-outline-variant/15 pt-8">
-							<div>
-								<p class="font-headline text-3xl leading-none font-black text-primary">
-									Rp{(monthlySavings / 1000).toFixed(0)}K
-								</p>
-								<p
-									class="mt-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
-								>
-									Hemat per bulan
-								</p>
-							</div>
-							<div>
-								<p class="font-headline text-3xl leading-none font-black text-primary">
-									{plasticSaved}
-								</p>
-								<p
-									class="mt-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
-								>
-									Gelas diselamatkan
-								</p>
-							</div>
+					<h3 class="font-headline text-3xl font-black tracking-tighter uppercase">
+						ELEVATE YOUR EVENT
+					</h3>
+					<form class="mt-12 space-y-8">
+						<div class="group">
+							<label
+								for="name"
+								class="font-headline text-[10px] font-bold tracking-widest uppercase"
+								>Company / Event Name</label
+							>
+							<input
+								type="text"
+								id="name"
+								class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
+							/>
 						</div>
-					</div>
+						<div class="group">
+							<label
+								for="type"
+								class="font-headline text-[10px] font-bold tracking-widest uppercase"
+								>Service Type</label
+							>
+							<select
+								id="type"
+								class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
+							>
+								<option>Office Pop-up Bar</option>
+								<option>Private Catering</option>
+								<option>Coffee Workshop</option>
+							</select>
+						</div>
+						<div class="group">
+							<label
+								for="email"
+								class="font-headline text-[10px] font-bold tracking-widest uppercase"
+								>Contact Details</label
+							>
+							<input
+								type="email"
+								id="email"
+								placeholder="email@address.com"
+								class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
+							/>
+						</div>
+						<button
+							class="w-full bg-[#2e5bff] py-5 font-headline text-xs font-bold tracking-[0.2em] text-on-primary text-white transition-all hover:bg-primary-dim"
+						>
+							REQUEST PROPOSAL
+						</button>
+					</form>
 				</div>
-			</div>
-		</div>
-	</section>
 
-	<!-- Catering Section -->
-	<section id="catering" class="px-6 py-24 md:px-12 md:py-32">
-		<div class="mx-auto grid max-w-7xl gap-20 lg:grid-cols-2">
-			<div class="bg-surface-container-low p-8 md:p-12">
-				<h3 class="font-headline text-3xl font-black tracking-tighter uppercase">
-					ELEVATE YOUR EVENT
-				</h3>
-				<form class="mt-12 space-y-8">
-					<div class="group">
-						<label for="name" class="font-headline text-[10px] font-bold tracking-widest uppercase"
-							>Company / Event Name</label
-						>
-						<input
-							type="text"
-							id="name"
-							class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
-						/>
-					</div>
-					<div class="group">
-						<label for="type" class="font-headline text-[10px] font-bold tracking-widest uppercase"
-							>Service Type</label
-						>
-						<select
-							id="type"
-							class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
-						>
-							<option>Office Pop-up Bar</option>
-							<option>Private Catering</option>
-							<option>Coffee Workshop</option>
-						</select>
-					</div>
-					<div class="group">
-						<label for="email" class="font-headline text-[10px] font-bold tracking-widest uppercase"
-							>Contact Details</label
-						>
-						<input
-							type="email"
-							id="email"
-							placeholder="email@address.com"
-							class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
-						/>
-					</div>
-					<button
-						class="w-full bg-primary py-5 font-headline text-xs font-bold tracking-[0.2em] text-on-primary transition-all hover:bg-primary-dim"
+				<div class="flex flex-col justify-center">
+					<span
+						class="hidden font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase md:block"
 					>
-						REQUEST PROPOSAL
-					</button>
-				</form>
-			</div>
-
-			<div class="flex flex-col justify-center">
-				<span class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
-					Namana For Business
-				</span>
-				<h2
-					class="mt-6 font-headline text-5xl leading-tight font-black tracking-tighter md:text-6xl"
-				>
-					PREMIUM<br />MOBILE CATERING.
-				</h2>
-				<p class="mt-8 max-w-lg font-body text-lg leading-relaxed text-on-surface-variant">
-					Bring the Namana experience to your office or private event. Professional baristas,
-					industrial equipment, and our signature bean selection delivered on-site.
-				</p>
-
-				<div class="mt-12 grid grid-cols-2 gap-12 border-t border-outline-variant/20 pt-12">
-					<div>
-						<div class="font-headline text-4xl font-black text-primary">200+</div>
-						<div class="mt-1 font-label text-[10px] font-bold tracking-widest uppercase opacity-60">
-							Cups per hour
-						</div>
-					</div>
-					<div>
-						<div class="font-headline text-4xl font-black text-primary">3h</div>
-						<div class="mt-1 font-label text-[10px] font-bold tracking-widest uppercase opacity-60">
-							Setup time
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Instagram Feed -->
-	<BentoGallery
-		imageItems={bentoImages}
-		title="SHOT ON COBALT."
-		description="A collection of stunning landscapes. Drag to explore, click to expand."
-	/>
-
-	<!-- Location Section -->
-	<section id="location" class="bg-surface-container-low px-6 py-24 md:px-12 md:py-32">
-		<div class="mx-auto max-w-7xl">
-			<div class="grid gap-16 lg:grid-cols-2">
-				<div>
-					<span class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
-						Find Us
+						Namana For Business
 					</span>
 					<h2
-						class="mt-4 font-headline text-5xl leading-tight font-black tracking-tighter md:text-6xl"
+						class="mt-6 hidden font-headline text-5xl leading-tight font-black tracking-tighter md:block md:text-6xl"
 					>
-						VISIT <span class="text-primary italic">US</span>.
+						PREMIUM<br />MOBILE CATERING.
 					</h2>
-					<p class="mt-8 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
-						Visit our flagship space. Designed for high-performance work sessions and precise
-						caffeine extractions.
+					<p
+						class="mt-8 hidden max-w-lg font-body text-lg leading-relaxed text-on-surface-variant md:block"
+					>
+						Bring the Namana experience to your office or private event. Professional baristas,
+						industrial equipment, and our signature bean selection delivered on-site.
 					</p>
 
-					<div class="mt-12 space-y-8">
+					<div class="mt-12 grid grid-cols-2 gap-12 border-t border-outline-variant/20 pt-12">
 						<div>
-							<h4 class="font-headline text-sm font-bold tracking-widest uppercase opacity-60">
-								ADDRESS
-							</h4>
-							<p class="mt-2 font-body text-xl font-bold">
-								JL. KEBAHAGIAAN UTARA NO.144<br />TAMALANREA, MAKASSAR 90245
-							</p>
+							<div class="font-headline text-4xl font-black text-primary">200+</div>
+							<div
+								class="mt-1 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
+							>
+								Cups per hour
+							</div>
 						</div>
 						<div>
-							<h4 class="font-headline text-sm font-bold tracking-widest uppercase opacity-60">
-								CONTACT
-							</h4>
-							<p class="mt-2 font-body text-xl font-bold text-primary">08194094745</p>
+							<div class="font-headline text-4xl font-black text-primary">3h</div>
+							<div
+								class="mt-1 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
+							>
+								Setup time
+							</div>
 						</div>
-						<a
-							href="https://www.google.com/maps/dir/?api=1&destination=-5.133940221591248,119.50772966637625"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="inline-block bg-primary px-8 py-4 font-headline text-sm font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
-						>
-							GET DIRECTIONS
-						</a>
 					</div>
 				</div>
+			</div>
+		</section>
 
-				<div
-					class="relative min-h-[400px] overflow-hidden bg-surface-container-high grayscale-[0.5] transition-all hover:grayscale-0"
-				>
-					<iframe
-						title="Namana Location"
-						width="100%"
-						height="100%"
-						style="border:0;"
-						loading="lazy"
-						allowfullscreen
-						src="https://maps.google.com/maps?q=-5.133940221591248,119.50772966637625&t=&z=15&ie=UTF8&iwloc=&output=embed"
-					></iframe>
+		<!-- Instagram Feed -->
+		<BentoGallery
+			imageItems={bentoImages}
+			title="SHOT ON COBALT."
+			description="A collection of stunning landscapes. Drag to explore, click to expand."
+		/>
+
+		<!-- Location Section -->
+		<section id="location" class="bg-surface-container-low px-4 py-16 md:px-12 md:py-32">
+			<div class="mx-auto max-w-7xl">
+				<div class="grid gap-16 lg:grid-cols-2">
+					<div>
+						<h2
+							class="mt-4 font-headline text-5xl leading-tight font-black tracking-tighter md:text-6xl"
+						>
+							VISIT <span class="text-primary italic">US</span>.
+						</h2>
+						<p class="mt-8 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
+							Visit our flagship space. Designed for high-performance work sessions and precise
+							caffeine extractions.
+						</p>
+
+						<div class="mt-8 space-y-8">
+							<div
+								class="relative min-h-100 overflow-hidden bg-surface-container-high grayscale-[0.5] transition-all hover:grayscale-0 md:hidden"
+							>
+								<iframe
+									title="Namana Location"
+									width="100%"
+									height="100%"
+									style="border:0;"
+									loading="lazy"
+									allowfullscreen
+									src="https://maps.google.com/maps?q=-5.133940221591248,119.50772966637625&t=&z=15&ie=UTF8&iwloc=&output=embed"
+								></iframe>
+							</div>
+
+							<!-- <div>
+								<h4 class="font-headline text-sm font-bold tracking-widest uppercase opacity-60">
+									ADDRESS
+								</h4>
+								<p class="mt-2 font-body text-xl font-bold">
+									JL. KEBAHAGIAAN UTARA NO.144<br />TAMALANREA, MAKASSAR 90245
+								</p>
+							</div>
+							<div>
+								<h4 class="font-headline text-sm font-bold tracking-widest uppercase opacity-60">
+									CONTACT
+								</h4>
+								<p class="mt-2 font-body text-xl font-bold text-primary">08194094745</p>
+							</div> -->
+							<a
+								href="https://www.google.com/maps/dir/?api=1&destination=-5.133940221591248,119.50772966637625"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-block w-full bg-primary px-8 py-4 text-center font-headline text-sm font-bold tracking-widest text-white transition-all active:scale-95"
+							>
+								GET DIRECTIONS
+							</a>
+						</div>
+					</div>
+
+					<div
+						class="relative hidden min-h-100 overflow-hidden bg-surface-container-high grayscale-[0.5] transition-all hover:grayscale-0 md:block"
+					>
+						<iframe
+							title="Namana Location"
+							width="100%"
+							height="100%"
+							style="border:0;"
+							loading="lazy"
+							allowfullscreen
+							src="https://maps.google.com/maps?q=-5.133940221591248,119.50772966637625&t=&z=15&ie=UTF8&iwloc=&output=embed"
+						></iframe>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	</section>
 </main>
 
-<footer class="bg-inverse-surface px-6 pt-24 pb-12 text-on-primary md:px-12">
+<footer class="bg-inverse-surface px-4 pt-16 pb-12 text-on-primary md:px-12 md:pt-24">
 	<div class="mx-auto max-w-7xl">
 		<div class="grid gap-16 md:grid-cols-3">
 			<div>
@@ -623,6 +642,17 @@
 </footer>
 
 <style>
+	@keyframes slideUpFade {
+		from {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
 	.rattan-texture {
 		background-image:
 			radial-gradient(var(--color-primary) 0.5px, transparent 0.5px),

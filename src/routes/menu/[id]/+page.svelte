@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { cn } from '$lib/utils';
 	import { products } from '$lib/data';
-	import { Zap, Sparkles, ArrowRight } from 'lucide-svelte';
+	import { Zap, Sparkles } from 'lucide-svelte';
 
 	const id = $derived(Number(page.params.id));
 	const product = $derived(products.find((p) => p.id === id) || products[0]);
@@ -33,51 +32,49 @@
 
 <main class="min-h-screen bg-surface">
 	<!-- Hero Section -->
-	<section class="relative px-6 pt-32 pb-24 md:px-12">
-		<div class="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
+	<section class="relative px-6 pt-24 pb-24 md:px-12">
+		<div class="mx-auto grid max-w-7xl items-center gap-4 lg:grid-cols-2">
 			<!-- Product Info -->
 			<div class="order-2 lg:order-1">
-				{#if product.tag}
+				<!-- {#if product.tag}
 					<div
 						class="mb-8 inline-block bg-primary px-4 py-1 font-headline text-[10px] font-bold tracking-widest text-on-primary uppercase"
 					>
 						{product.tag}
 					</div>
-				{/if}
+				{/if} -->
 
 				<h1
-					class="mb-12 font-headline text-6xl leading-[0.85] font-black tracking-tighter text-on-surface uppercase md:text-8xl"
+					class="mb-4 font-headline text-6xl leading-[0.85] font-black tracking-tighter text-on-surface uppercase md:mb-12 md:text-8xl"
 				>
 					{product.name}
 				</h1>
 
-				<div class="mb-16 grid grid-cols-2 gap-8">
-					<div class="flex items-center gap-4">
-						<div class="bg-primary p-3 text-on-primary">
-							<Zap size={24} strokeWidth={3} />
-						</div>
-						<div>
-							<p
-								class="font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase opacity-60"
-							>
-								Caffeine Level
-							</p>
-							<p class="font-headline text-sm font-bold tracking-tight text-primary uppercase">
-								{product.details?.caffeine || 'High'}
-							</p>
+				<div class="mb-8 grid grid-cols-1 gap-8 md:mb-16 md:grid-cols-2">
+					<div>
+						<p
+							class="mb-1 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase opacity-60"
+						>
+							Caffeine Level
+						</p>
+						<div class="flex w-fit items-center gap-2 bg-primary p-2 text-on-primary">
+							<Zap size={24} />
+							<div>
+								<p class="font-headline text-sm font-medium tracking-tight uppercase">
+									{product.details?.caffeine || 'High'}
+								</p>
+							</div>
 						</div>
 					</div>
-					<div class="flex items-center gap-4">
-						<div class="bg-primary p-3 text-on-primary">
-							<Sparkles size={24} strokeWidth={3} />
-						</div>
-						<div>
-							<p
-								class="font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase opacity-60"
-							>
-								Flavor Profile
-							</p>
-							<p class="font-headline text-sm font-bold tracking-tight text-primary uppercase">
+					<div>
+						<p
+							class="mb-1 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase opacity-60"
+						>
+							Flavor Profile
+						</p>
+						<div class="flex w-fit items-center gap-2 bg-primary p-2 text-on-primary">
+							<Sparkles size={24} />
+							<p class="font-headline text-sm font-medium tracking-tight uppercase">
 								{product.details?.flavor || 'Creamy & Bold'}
 							</p>
 						</div>
@@ -101,7 +98,9 @@
 
 			<!-- Product Image -->
 			<div class="relative order-1 lg:order-2">
-				<div class="group relative aspect-square overflow-hidden bg-surface-container-high shadow-2xl">
+				<div
+					class="group relative aspect-square overflow-hidden bg-surface-container-high shadow-2xl"
+				>
 					<img
 						src={product.image}
 						alt={product.name}
@@ -111,8 +110,17 @@
 
 				<!-- Price Tag -->
 				<div
-					class="absolute bottom-0 left-0 translate-y-1/2 bg-primary p-8 text-on-primary shadow-2xl md:translate-y-0"
+					class="absolute bottom-0 left-0 hidden translate-y-1/2 bg-primary p-8 text-on-primary shadow-2xl md:block md:translate-y-0"
 				>
+					<p class="mb-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-80">
+						Starting at
+					</p>
+					<p class="font-headline text-4xl leading-none font-black tracking-tighter">
+						{product.price}
+					</p>
+				</div>
+
+				<div class="mt-8 text-primary md:hidden">
 					<p class="mb-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-80">
 						Starting at
 					</p>
@@ -125,10 +133,12 @@
 	</section>
 
 	<!-- Vibe Notes -->
-	<section class="bg-surface-container-lowest px-6 py-24 md:px-12">
+	<section class="bg-surface-container-lowest px-6 py-12 md:px-12">
 		<div class="mx-auto max-w-7xl">
-			<div class="relative border-l-4 border-primary/80 py-12 pl-12">
-				<p class="mb-8 font-label text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
+			<div class="relative border-l-4 border-primary/80 pl-6 md:py-12 md:pl-12">
+				<p
+					class="mb-4 font-label text-[10px] font-bold tracking-[0.3em] text-primary uppercase md:mb-8"
+				>
 					Vibe Notes
 				</p>
 				<h2

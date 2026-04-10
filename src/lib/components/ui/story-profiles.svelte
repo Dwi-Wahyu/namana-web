@@ -519,25 +519,35 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<section class="story-section relative overflow-hidden bg-primary px-6 py-24 text-on-primary md:px-12 md:py-32">
+<section
+	class="story-section relative overflow-hidden bg-primary px-4 py-16 text-on-primary md:px-12 md:py-32"
+>
 	<!-- Decorative Elements -->
-	<div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-white/[0.03] blur-3xl"></div>
-	<div class="pointer-events-none absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-[#003cd3]/30 blur-3xl"></div>
-	<div class="pointer-events-none absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.02] blur-3xl"></div>
+	<div
+		class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-white/[0.03] blur-3xl"
+	></div>
+	<div
+		class="pointer-events-none absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-[#003cd3]/30 blur-3xl"
+	></div>
+	<div
+		class="pointer-events-none absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.02] blur-3xl"
+	></div>
 
 	<div class="mx-auto max-w-7xl">
 		<!-- 1. Title -->
-		<div class="mb-8 text-center md:mb-12">
+		<div class="mb-8 md:mb-12">
 			<span class="font-headline text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">
 				Snap · Share · Savor
 			</span>
-			<h2 class="mt-4 font-headline text-5xl leading-[0.85] font-black tracking-tighter md:text-7xl lg:text-8xl">
+			<h2
+				class="mt-4 font-headline text-5xl leading-[0.85] font-black tracking-tighter md:text-7xl lg:text-8xl"
+			>
 				5 STORIES =<br /><span class="italic opacity-90">1 FREE DRINK.</span>
 			</h2>
 		</div>
 
 		<!-- 2. IG Profile Bubbles - Scattered Layout -->
-		<div class="profile-field relative mx-auto my-8 h-[440px] max-w-5xl md:my-12 md:h-[480px]">
+		<div class="profile-field relative mx-auto h-80 max-w-5xl md:h-[480px]">
 			{#each profiles as profile, i (profile.id)}
 				<button
 					onclick={() => openStories(profile)}
@@ -551,8 +561,10 @@
 				>
 					<!-- IG Gradient Ring -->
 					<div class="relative transition-transform duration-300 group-hover:scale-110">
-						<div class="ig-ring rounded-full p-[3px] bg-gradient-to-tr {profile.color}">
-							<div class="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[#2e5bff] bg-surface-container-high md:h-[72px] md:w-[72px]">
+						<div class="ig-ring rounded-full bg-gradient-to-tr p-[3px] {profile.color}">
+							<div
+								class="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[#2e5bff] bg-surface-container-high md:h-[72px] md:w-[72px]"
+							>
 								<img
 									src={profile.stories[0].src}
 									alt={profile.username}
@@ -561,30 +573,51 @@
 							</div>
 						</div>
 						<!-- Story count indicator -->
-						<div class="absolute -right-1 -bottom-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#ff3040] text-[8px] font-bold text-white ring-2 ring-[#2e5bff] md:h-[22px] md:w-[22px] md:text-[9px]">
+						<div
+							class="absolute -right-1 -bottom-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#ff3040] text-[8px] font-bold text-white ring-2 ring-[#2e5bff] md:h-[22px] md:w-[22px] md:text-[9px]"
+						>
 							5
 						</div>
 					</div>
 					<!-- Username -->
-					<span class="max-w-[72px] truncate font-label text-[9px] font-semibold text-white/70 transition-colors group-hover:text-white md:max-w-[90px] md:text-[10px]">
+					<span
+						class="max-w-[72px] truncate font-label text-[9px] font-semibold text-white/70 transition-colors group-hover:text-white md:max-w-[90px] md:text-[10px]"
+					>
 						{profile.username}
 					</span>
 				</button>
 			{/each}
 
 			<!-- Floating decorative dots -->
-			<div class="pointer-events-none absolute top-[18%] left-[22%] h-1 w-1 animate-pulse rounded-full bg-white/20"></div>
-			<div class="pointer-events-none absolute top-[45%] left-[48%] h-1.5 w-1.5 animate-pulse rounded-full bg-white/15" style="animation-delay: 0.5s;"></div>
-			<div class="pointer-events-none absolute top-[72%] left-[15%] h-1 w-1 animate-pulse rounded-full bg-white/10" style="animation-delay: 1s;"></div>
-			<div class="pointer-events-none absolute top-[12%] left-[70%] h-0.5 w-0.5 animate-pulse rounded-full bg-white/25" style="animation-delay: 1.5s;"></div>
-			<div class="pointer-events-none absolute top-[55%] left-[75%] h-1 w-1 animate-pulse rounded-full bg-white/15" style="animation-delay: 2s;"></div>
-			<div class="pointer-events-none absolute top-[82%] left-[45%] h-0.5 w-0.5 animate-pulse rounded-full bg-white/20" style="animation-delay: 0.8s;"></div>
+			<div
+				class="pointer-events-none absolute top-[18%] left-[22%] h-1 w-1 animate-pulse rounded-full bg-white/20"
+			></div>
+			<div
+				class="pointer-events-none absolute top-[45%] left-[48%] h-1.5 w-1.5 animate-pulse rounded-full bg-white/15"
+				style="animation-delay: 0.5s;"
+			></div>
+			<div
+				class="pointer-events-none absolute top-[72%] left-[15%] h-1 w-1 animate-pulse rounded-full bg-white/10"
+				style="animation-delay: 1s;"
+			></div>
+			<div
+				class="pointer-events-none absolute top-[12%] left-[70%] h-0.5 w-0.5 animate-pulse rounded-full bg-white/25"
+				style="animation-delay: 1.5s;"
+			></div>
+			<div
+				class="pointer-events-none absolute top-[55%] left-[75%] h-1 w-1 animate-pulse rounded-full bg-white/15"
+				style="animation-delay: 2s;"
+			></div>
+			<div
+				class="pointer-events-none absolute top-[82%] left-[45%] h-0.5 w-0.5 animate-pulse rounded-full bg-white/20"
+				style="animation-delay: 0.8s;"
+			></div>
 		</div>
 
 		<!-- 3. Description & Rules -->
 		<div class="mx-auto max-w-3xl">
 			<!-- Description -->
-			<p class="mx-auto max-w-xl text-center font-body text-base leading-relaxed text-white/85 md:text-lg">
+			<p class="mx-auto max-w-xl font-body text-base leading-relaxed text-white/85 md:text-lg">
 				Buat 5 story di Instagram setiap kali berkunjung ke
 				<strong class="text-white">@namana.coffee</strong>. Unggah satu story setiap kunjungan
 				berbeda, dan setelah lima kunjungan, nikmati minuman gratis pilihanmu!
@@ -592,24 +625,36 @@
 
 			<!-- Rules Cards -->
 			<div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-				<div class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
-					<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 font-headline text-xs font-bold text-white">
+				<div
+					class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-sm"
+				>
+					<div
+						class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 font-headline text-xs font-bold text-white"
+					>
 						1
 					</div>
 					<span class="font-body text-[12px] leading-snug text-white/70 md:text-[13px]">
 						Satu story = satu kunjungan
 					</span>
 				</div>
-				<div class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
-					<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 font-headline text-xs font-bold text-white">
+				<div
+					class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-sm"
+				>
+					<div
+						class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 font-headline text-xs font-bold text-white"
+					>
 						5
 					</div>
 					<span class="font-body text-[12px] leading-snug text-white/70 md:text-[13px]">
 						Total 5 kunjungan untuk klaim
 					</span>
 				</div>
-				<div class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
-					<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 font-headline text-xs font-bold text-white">
+				<div
+					class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-sm"
+				>
+					<div
+						class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 font-headline text-xs font-bold text-white"
+					>
 						@
 					</div>
 					<span class="font-body text-[12px] leading-snug text-white/70 md:text-[13px]">
@@ -640,7 +685,7 @@
 		aria-label="Story viewer"
 	>
 		<!-- Close Button -->
-		<button
+		<!-- <button
 			onclick={closeStories}
 			class="absolute top-4 right-4 z-[110] flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white/20 md:top-6 md:right-6"
 			aria-label="Close stories"
@@ -649,7 +694,7 @@
 				<line x1="18" y1="6" x2="6" y2="18" />
 				<line x1="6" y1="6" x2="18" y2="18" />
 			</svg>
-		</button>
+		</button> -->
 
 		<!-- Story Container (Phone frame) -->
 		<div
@@ -669,10 +714,14 @@
 			{/key}
 
 			<!-- Top Gradient -->
-			<div class="absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-black/60 via-black/30 to-transparent"></div>
+			<div
+				class="absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-black/60 via-black/30 to-transparent"
+			></div>
 
 			<!-- Bottom Gradient -->
-			<div class="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+			<div
+				class="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-black/70 via-black/30 to-transparent"
+			></div>
 
 			<!-- Progress Bars (5 segments) -->
 			<div class="absolute inset-x-0 top-0 z-20 flex gap-[3px] px-3 pt-3">
@@ -695,7 +744,9 @@
 				<div class="flex items-center gap-2.5">
 					<!-- IG Gradient Ring Avatar -->
 					<div class="rounded-full bg-gradient-to-tr p-[2px] {activeProfile.color}">
-						<div class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-black bg-surface-container-high">
+						<div
+							class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-black bg-surface-container-high"
+						>
 							<img
 								src={activeProfile.stories[0].src}
 								alt={activeProfile.username}
@@ -717,7 +768,13 @@
 					class="text-white/70 hover:text-white"
 					aria-label="Close"
 				>
-					<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<svg
+						class="h-5 w-5"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
 						<line x1="18" y1="6" x2="6" y2="18" />
 						<line x1="6" y1="6" x2="18" y2="18" />
 					</svg>
@@ -725,8 +782,8 @@
 			</div>
 
 			<!-- Visit Counter Badge -->
-			<div class="absolute top-16 left-1/2 z-20 -translate-x-1/2">
-				<div class="rounded-full bg-black/40 px-4 py-1.5 text-center backdrop-blur-sm">
+			<div class="absolute top-16 left-1/2 z-20 -translate-x-1/4">
+				<div class="rounded-full bg-black/40 px-4 pb-1.5 text-center backdrop-blur-sm">
 					<span class="text-[11px] font-semibold text-white/90">
 						Kunjungan {activeStoryIndex + 1} / 5
 					</span>
@@ -736,7 +793,9 @@
 			<!-- Caption & Reply Bar (Bottom) -->
 			<div class="absolute inset-x-0 bottom-0 z-20 px-4 pb-4">
 				<!-- Tag -->
-				<div class="mb-2 inline-block rounded-md bg-primary/80 px-2 py-0.5 text-[10px] font-bold text-white backdrop-blur-sm">
+				<div
+					class="mb-2 inline-block rounded-md bg-primary/80 px-2 py-0.5 text-[10px] font-bold text-white backdrop-blur-sm"
+				>
 					@namana.coffee
 				</div>
 				<!-- Caption -->
@@ -749,11 +808,25 @@
 						<span class="text-xs text-white/40">Kirim pesan...</span>
 					</div>
 					<!-- Heart -->
-					<svg class="h-5 w-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+					<svg
+						class="h-5 w-5 text-white/70"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path
+							d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+						/>
 					</svg>
 					<!-- Share -->
-					<svg class="h-5 w-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<svg
+						class="h-5 w-5 text-white/70"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
 						<line x1="22" y1="2" x2="11" y2="13" />
 						<polygon points="22 2 15 22 11 13 2 9 22 2" />
 					</svg>
@@ -762,12 +835,16 @@
 
 			<!-- Navigation Hint -->
 			<div class="pointer-events-none absolute inset-0 z-[5]">
-				<div class="absolute top-1/2 left-4 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+				<div
+					class="absolute top-1/2 left-4 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+				>
 					<svg class="h-6 w-6 text-white/30" viewBox="0 0 24 24" fill="currentColor">
 						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
 					</svg>
 				</div>
-				<div class="absolute top-1/2 right-4 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+				<div
+					class="absolute top-1/2 right-4 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+				>
 					<svg class="h-6 w-6 text-white/30" viewBox="0 0 24 24" fill="currentColor">
 						<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
 					</svg>
@@ -795,8 +872,13 @@
 	}
 
 	@keyframes ring-shimmer {
-		0%, 100% { filter: brightness(1); }
-		50% { filter: brightness(1.2); }
+		0%,
+		100% {
+			filter: brightness(1);
+		}
+		50% {
+			filter: brightness(1.2);
+		}
 	}
 
 	/* Story image animation */
@@ -805,8 +887,14 @@
 	}
 
 	@keyframes story-fade-in {
-		from { opacity: 0; transform: scale(1.05); }
-		to { opacity: 1; transform: scale(1); }
+		from {
+			opacity: 0;
+			transform: scale(1.05);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 
 	/* Modal entrance */
@@ -815,8 +903,12 @@
 	}
 
 	@keyframes modal-in {
-		from { opacity: 0; }
-		to { opacity: 1; }
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
 	.story-container {
@@ -824,8 +916,14 @@
 	}
 
 	@keyframes story-container-in {
-		from { opacity: 0; transform: scale(0.9) translateY(20px); }
-		to { opacity: 1; transform: scale(1) translateY(0); }
+		from {
+			opacity: 0;
+			transform: scale(0.9) translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
 	}
 
 	/* Profile bubble hover glow */
@@ -834,7 +932,7 @@
 		position: absolute;
 		inset: -8px;
 		border-radius: 50%;
-		background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
 		opacity: 0;
 		transition: opacity 0.3s ease;
 	}
