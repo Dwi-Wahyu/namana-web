@@ -537,12 +537,12 @@
 		<!-- 1. Title -->
 		<div class="mb-8 md:mb-12">
 			<span class="font-headline text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">
-				Snap · Share · Savor
+				Potret · Bagikan · Nikmati
 			</span>
 			<h2
 				class="mt-4 font-headline text-5xl leading-[0.85] font-black tracking-tighter md:text-7xl lg:text-8xl"
 			>
-				5 STORIES =<br /><span class="italic opacity-90">1 FREE DRINK.</span>
+				5 STORY =<br /><span class="italic opacity-90">1 MINUMAN GRATIS.</span>
 			</h2>
 		</div>
 

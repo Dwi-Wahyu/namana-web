@@ -12,15 +12,15 @@ export const products = [
 	{
 		id: 1,
 		name: 'DOUBLE SHOT NITRO',
-		desc: 'Precision-extracted caffeine for rapid cognitive deployment.',
-		price: '$6.50',
+		desc: 'Ekstraksi kafein presisi untuk kerja kognitif yang cepat.',
+		price: 'Rp 65.000',
 		image: '/product/435688077_18429630226017362_896776942331266593_n.jpg',
 		category: 'Espresso',
-		tag: 'DIGITAL BATCH #01',
-		vibeNotes: 'The perfect companion for deep work. Smooth, bold, and designed to fuel your high-performance morning.',
+		tag: 'BATCH DIGITAL #01',
+		vibeNotes: 'Teman sempurna untuk kerja fokus. Halus, tebal, dan dirancang untuk memacu pagi produktif Anda.',
 		details: {
-			caffeine: 'High',
-			flavor: 'Creamy & Bold'
+			caffeine: 'Tinggi',
+			flavor: 'Krim & Tebal'
 		},
 		gallery: [
 			'/feature/497473078_18507098299017362_7767216781664247105_n.jpg',
@@ -32,15 +32,15 @@ export const products = [
 	{
 		id: 2,
 		name: 'COBALT COLD BREW',
-		desc: '24-hour slow drip extraction. Zero bitterness. All power.',
-		price: '$7.20',
+		desc: 'Ekstraksi tetesan lambat 24 jam. Tanpa rasa pahit. Tenaga penuh.',
+		price: 'Rp 72.000',
 		image: '/product/473903495_18484460062017362_7702279212235018828_n.jpg',
 		category: 'Cold Brew',
-		tag: 'PEAK PERFORMANCE',
-		vibeNotes: 'Slowly dripped for 24 hours to ensure the cleanest caffeine delivery possible.',
+		tag: 'PERFORMA PUNCAK',
+		vibeNotes: 'Diteteskan perlahan selama 24 jam untuk memastikan dorongan kafein yang paling bersih.',
 		details: {
-			caffeine: 'Medium-High',
-			flavor: 'Silky & Refreshing'
+			caffeine: 'Menengah-Tinggi',
+			flavor: 'Halus & Segar'
 		},
 		gallery: [
 			'/product/473903495_18484460062017362_7702279212235018828_n.jpg',
@@ -52,74 +52,74 @@ export const products = [
 	{
 		id: 3,
 		name: 'ARCHITECT LATTE',
-		desc: 'Structured layers of micro-foam and high-altitude espresso.',
-		price: '$5.80',
+		desc: 'Lapisan terstruktur dari busa mikro dan espresso dataran tinggi.',
+		price: 'Rp 58.000',
 		image: '/product/515105493_18517103239017362_614143355468016190_n.jpg',
 		category: 'Espresso',
-		vibeNotes: 'A structural masterpiece of foam and espresso. Perfectly balanced.',
+		vibeNotes: 'Karya agung struktural antara busa dan espresso. Sangat seimbang.',
 		details: {
-			caffeine: 'Medium',
-			flavor: 'Balanced & Smooth'
+			caffeine: 'Menengah',
+			flavor: 'Seimbang & Halus'
 		},
 		gallery: []
 	},
 	{
 		id: 4,
 		name: 'KINETIC ICED',
-		desc: 'A flash-chilled solution for the high-velocity urbanite.',
-		price: '$6.00',
+		desc: 'Solusi dingin seketika untuk kaum urban yang bergerak cepat.',
+		price: 'Rp 60.000',
 		image: '/product/521163956_18519876091017362_4302785918758206052_n.jpg',
 		category: 'Cold Brew',
-		vibeNotes: 'Flash-chilled to lock in the vibrant notes of our single-origin beans.',
+		vibeNotes: 'Didinginkan dengan cepat untuk mengunci karakter segar dari biji asal tunggal kami.',
 		details: {
-			caffeine: 'Medium',
-			flavor: 'Crisp & Vibrant'
+			caffeine: 'Menengah',
+			flavor: 'Renik & Cerah'
 		},
 		gallery: []
 	},
 	{
 		id: 5,
 		name: 'VOID BLACK SPECIAL',
-		desc: 'Experimental bean blend from the volcanic peaks of Sulawesi.',
-		price: '$8.50',
+		desc: 'Campuran biji kopi eksperimental dari puncak vulkanik Sulawesi.',
+		price: 'Rp 85.000',
 		image: '/product/655347876_18100859437939858_6919636928105541099_n.jpg',
 		category: 'Seasonal',
-		tag: "EDITOR'S CHOICE",
+		tag: "PILIHAN EDITOR",
 		special: true,
-		vibeNotes: 'An experimental journey into the volcanic soils of Sulawesi.',
+		vibeNotes: 'Perjalanan eksperimental di tanah vulkanik Sulawesi.',
 		details: {
-			caffeine: 'Very High',
-			flavor: 'Earthy & Intense'
+			caffeine: 'Sangat Tinggi',
+			flavor: 'Alami & Intens'
 		},
 		gallery: []
 	},
 	{
 		id: 6,
 		name: 'COBALT CROISSANT',
-		desc: 'Buttery perfection with a hidden cobalt-berry reduction center.',
-		price: '$4.90',
+		desc: 'Kelezatan mentega dengan kejutan selei kobalt beri yang tersembunyi.',
+		price: 'Rp 49.000',
 		image: '/product/481868530_18491762725017362_4940742496875771162_n.jpg',
 		category: 'Bakery',
-		vibeNotes: 'Layers of butter and a surprise cobalt-berry center.',
+		vibeNotes: 'Lapisan mentega renyah dengan pusat biru kobalt berry yang mengejutkan.',
 		details: {
-			caffeine: 'None',
-			flavor: 'Sweet & Buttery'
+			caffeine: 'Tidak Ada',
+			flavor: 'Manis & Gurih Mentega'
 		},
 		gallery: []
 	},
 	{
 		id: 7,
 		name: 'COBALT DIRTY LATTE',
-		desc: 'Our signature editorial blend. Cobalt-infused espresso meets textured milk.',
-		price: '$6.50',
+		desc: 'Paduan khas kami. Espresso yang diinfusi kobalt berpadu dengan susu bertekstur.',
+		price: 'Rp 65.000',
 		image: '/product/501226394_18509736802017362_5944014104648471794_n.jpg',
 		category: 'Espresso',
-		tag: 'SIGNATURE EXPERIENCE',
+		tag: 'PENGALAMAN KHAS',
 		special: true,
-		vibeNotes: 'The perfect companion for deep work. Smooth, bold, and designed to fuel your high-performance morning.',
+		vibeNotes: 'Teman sempurna untuk kerja fokus. Terasa tebal dan kaya untuk menghidupi kinerja tinggi Anda.',
 		details: {
-			caffeine: 'High',
-			flavor: 'Creamy & Bold'
+			caffeine: 'Tinggi',
+			flavor: 'Krim & Tebal'
 		},
 		gallery: [
 			'/feature/497473078_18507098299017362_7767216781664247105_n.jpg',
@@ -131,47 +131,48 @@ export const products = [
 	{
 		id: 8,
 		name: 'QUARTZ FLAT WHITE',
-		desc: 'Velvety micro-foam poured over a double shot of our urban blend.',
-		price: '$5.50',
+		desc: 'Busa mikro selembut sutra di atas dosis ganda campuran khas kaum urban kami.',
+		price: 'Rp 55.000',
 		image: '/product/464710870_1056169755978613_4412213918762711123_n.jpg',
 		category: 'Espresso',
-		vibeNotes: 'Smooth as quartz, strong as concrete. The ultimate balance.',
-		details: { caffeine: 'Medium-High', flavor: 'Smooth & Nutty' },
+		vibeNotes: 'Sehalus batu kuarsa, sekuat beton. Keseimbangan pamungkas.',
+		details: { caffeine: 'Menengah-Tinggi', flavor: 'Halus & Kacang' },
 		gallery: []
 	},
 	{
 		id: 9,
 		name: 'URBAN CARAMEL',
-		desc: 'Salted caramel infused with dark-roasted espresso and textured milk.',
-		price: '$6.20',
+		desc: 'Karamel gurih manis dipadukan dengan espresso panggang gelap dan susu bertekstur.',
+		price: 'Rp 62.000',
 		image: '/product/501602578_18509736781017362_5273869525265987872_n.jpg',
 		category: 'Espresso',
-		tag: 'LOCAL FAVORITE',
-		vibeNotes: 'Sweet meets salt in this high-contrast urban favorite.',
-		details: { caffeine: 'Medium', flavor: 'Sweet & Salty' },
+		tag: 'FAVORIT LOKAL',
+		vibeNotes: 'Rasa manis berpadu gurih dalam keseimbangan favorit gaya urban tinggi.',
+		details: { caffeine: 'Menengah', flavor: 'Manis & Gurih' },
 		gallery: []
 	},
 	{
 		id: 10,
 		name: 'CHROME MUFFIN',
-		desc: 'Dark chocolate muffin with a shimmering glaze and sea salt.',
-		price: '$4.50',
+		desc: 'Muffin cokelat hitam dengan hiasan glasir mengkilap serta garam laut.',
+		price: 'Rp 45.000',
 		image: '/product/657290535_18577963453017362_7821735844328436573_n.jpg',
 		category: 'Bakery',
-		vibeNotes: 'A metallic finish to a classic dark chocolate treat.',
-		details: { caffeine: 'Low', flavor: 'Rich & Salty' },
+		vibeNotes: 'Sentuhan elegan layaknya logam, menyelimuti klasiknya kenikmatan cokelat hitam.',
+		details: { caffeine: 'Rendah', flavor: 'Kaya Kandungan' },
 		gallery: []
 	},
 	{
 		id: 11,
 		name: 'KINETIC V60',
-		desc: 'Pour-over extraction showcasing the bright acidity of seasonal beans.',
-		price: '$7.50',
+		desc: 'Ekstraksi pour-over yang memamerkan keasaman cerah dari biji kopi musiman.',
+		price: 'Rp 75.000',
 		image: '/product/651621931_17917261155289162_3846129621922149798_n.jpg',
 		category: 'Pour Over',
-		tag: 'ARTISAN CHOICE',
-		vibeNotes: 'Precision brewing for the discerning urbanite.',
-		details: { caffeine: 'High', flavor: 'Bright & Floral' },
+		tag: 'PILIHAN ARTISAN',
+		vibeNotes: 'Penyeduhan presisi tinggi bagi kaum urban yang paham kualitas.',
+		details: { caffeine: 'Tinggi', flavor: 'Cerah & Bunga' },
 		gallery: []
 	}
 ];
+

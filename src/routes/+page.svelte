@@ -37,43 +37,43 @@
 	const bentoImages = [
 		{
 			id: 1,
-			title: 'The Blue Brew',
-			desc: 'Signature cobalt vibes in every cup.',
+			title: 'Seduhan Biru',
+			desc: 'Nuansa kobalt khas di setiap cangkir.',
 			url: '/scenery/498280138_2167924453649630_8383188952732617144_n.jpg',
 			span: 'md:col-span-2 md:row-span-2'
 		},
 		{
 			id: 2,
-			title: 'Industrial Comfort',
-			desc: 'Concrete meets cobalt blue.',
+			title: 'Kenyamanan Industrial',
+			desc: 'Beton padu biru kobalt.',
 			url: '/product/501226394_18509736802017362_5944014104648471794_n.jpg',
 			span: 'md:row-span-1'
 		},
 		{
 			id: 3,
-			title: 'Golden Hour',
-			desc: 'The perfect light for the perfect brew.',
+			title: 'Momen Keemasan',
+			desc: 'Cahaya tepat bagi seduhan tepat.',
 			url: '/product/521163956_18519876091017362_4302785918758206052_n.jpg',
 			span: 'md:row-span-1'
 		},
 		{
 			id: 4,
-			title: 'Productivity Hub',
-			desc: 'Where urbanites get things done.',
+			title: 'Pusat Produktivitas',
+			desc: 'Tempat merampungkan hal penting.',
 			url: '/scenery/502734466_1416529052708555_837181136922468108_n.jpg',
 			span: 'md:row-span-2'
 		},
 		{
 			id: 5,
-			title: 'Artisan Process',
-			desc: 'Precision in every drop.',
+			title: 'Proses Artisan',
+			desc: 'Presisi tingkat tetes.',
 			url: '/product/651621931_17917261155289162_3846129621922149798_n.jpg',
 			span: 'md:row-span-1'
 		},
 		{
 			id: 6,
-			title: 'Namana Exterior',
-			desc: 'A beacon for the digital nomad.',
+			title: 'Eksterior Namana',
+			desc: 'Mercusuar bagi nomad digital.',
 			url: '/scenery/642921837_936515735728776_3352510710565148966_n.jpg',
 			span: 'md:col-span-2 md:row-span-1'
 		}
@@ -89,8 +89,8 @@
 
 	const navLinks = [
 		{ name: 'Menu', href: '#menu' },
-		{ name: 'Location', href: '#location' },
-		{ name: 'Catering', href: '#catering' }
+		{ name: 'Lokasi', href: '#location' },
+		{ name: 'Katering', href: '#catering' }
 	];
 </script>
 
@@ -203,19 +203,18 @@
 			<span
 				class="inline-block rounded-sm bg-primary px-2 py-1 font-headline text-[10px] font-bold tracking-[0.4em] text-on-primary uppercase opacity-90"
 			>
-				The Digital Third Space
+				Ruang Ketiga Digital
 			</span>
 			<h1
 				class="mt-4 font-headline text-4xl leading-[1.1] font-black tracking-tighter md:text-6xl lg:text-7xl"
 			>
-				BREWED FOR THE<br />
-				<span class="text-primary italic">URBANITE.</span>
+				DISEDUH UNTUK KAUM<br />
+				<span class="text-primary italic">URBAN.</span>
 			</h1>
 			<p
 				class="mx-auto mt-10 hidden max-w-lg font-body text-lg leading-relaxed text-white/80 md:block"
 			>
-				A digital-first sanctuary in the heart of Makassar. Precise extractions, industrial
-				minimalism, and zero-friction coffee culture for the high-performance urbanite.
+				Tempat perlindungan berkonsep digital di pusat Makassar. Ekstraksi presisi, minimalisme industrial, dan budaya kopi tanpa hambatan bagi kaum urban produktif.
 			</p>
 			<div class="mt-4 hidden flex-wrap justify-center gap-6 md:mt-14 md:flex">
 				<button
@@ -426,17 +425,17 @@
 					<span
 						class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase md:hidden"
 					>
-						Namana For Business
+						Namana Untuk Bisnis
 					</span>
 					<h3 class="font-headline text-3xl font-black tracking-tighter uppercase">
-						ELEVATE YOUR EVENT
+						ANGKAT ACARA ANDA
 					</h3>
 					<form class="mt-12 space-y-8">
 						<div class="group">
 							<label
 								for="name"
 								class="font-headline text-[10px] font-bold tracking-widest uppercase"
-								>Company / Event Name</label
+								>Nama Perusahaan / Acara</label
 							>
 							<input
 								type="text"
@@ -448,22 +447,22 @@
 							<label
 								for="type"
 								class="font-headline text-[10px] font-bold tracking-widest uppercase"
-								>Service Type</label
+								>Jenis Layanan</label
 							>
 							<select
 								id="type"
 								class="w-full border-0 border-b border-outline-variant/30 bg-transparent py-3 focus:border-primary focus:ring-0"
 							>
-								<option>Office Pop-up Bar</option>
-								<option>Private Catering</option>
-								<option>Coffee Workshop</option>
+								<option>Bar Pop-up Kantor</option>
+								<option>Katering Privat</option>
+								<option>Workshop Kopi</option>
 							</select>
 						</div>
 						<div class="group">
 							<label
 								for="email"
 								class="font-headline text-[10px] font-bold tracking-widest uppercase"
-								>Contact Details</label
+								>Detail Kontak</label
 							>
 							<input
 								type="email"
@@ -475,7 +474,7 @@
 						<button
 							class="w-full bg-[#2e5bff] py-5 font-headline text-xs font-bold tracking-[0.2em] text-on-primary text-white transition-all hover:bg-primary-dim"
 						>
-							REQUEST PROPOSAL
+							MINTA PROPOSAL
 						</button>
 					</form>
 				</div>
@@ -484,18 +483,17 @@
 					<span
 						class="hidden font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase md:block"
 					>
-						Namana For Business
+						Namana Untuk Bisnis
 					</span>
 					<h2
 						class="mt-6 hidden font-headline text-5xl leading-tight font-black tracking-tighter md:block md:text-6xl"
 					>
-						PREMIUM<br />MOBILE CATERING.
+						KATERING KELILING<br />PREMIUM.
 					</h2>
 					<p
 						class="mt-8 hidden max-w-lg font-body text-lg leading-relaxed text-on-surface-variant md:block"
 					>
-						Bring the Namana experience to your office or private event. Professional baristas,
-						industrial equipment, and our signature bean selection delivered on-site.
+						Hadirkan pengalaman Namana ke kantor atau acara privat Anda. Barista profesional, perlengkapan industrial, dan pilihan biji kopi andalan kami diantarkan langsung ke lokasi.
 					</p>
 
 					<div class="mt-12 grid grid-cols-2 gap-12 border-t border-outline-variant/20 pt-12">
@@ -504,15 +502,15 @@
 							<div
 								class="mt-1 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
 							>
-								Cups per hour
+								Cangkir per jam
 							</div>
 						</div>
 						<div>
-							<div class="font-headline text-4xl font-black text-primary">3h</div>
+							<div class="font-headline text-4xl font-black text-primary">3j</div>
 							<div
 								class="mt-1 font-label text-[10px] font-bold tracking-widest uppercase opacity-60"
 							>
-								Setup time
+								Waktu persiapan
 							</div>
 						</div>
 					</div>
@@ -523,8 +521,8 @@
 		<!-- Instagram Feed -->
 		<BentoGallery
 			imageItems={bentoImages}
-			title="SHOT ON COBALT."
-			description="A collection of stunning landscapes. Drag to explore, click to expand."
+			title="DIPOTRET DI COBALT."
+			description="Koleksi lanskap memukau. Geser untuk eksplorasi, klik untuk memperbesar."
 		/>
 
 		<!-- Location Section -->
@@ -535,11 +533,10 @@
 						<h2
 							class="mt-4 font-headline text-5xl leading-tight font-black tracking-tighter md:text-6xl"
 						>
-							VISIT <span class="text-primary italic">US</span>.
+							KUNJUNGI <span class="text-primary italic">KAMI</span>.
 						</h2>
 						<p class="mt-8 max-w-md font-body text-lg leading-relaxed text-on-surface-variant">
-							Visit our flagship space. Designed for high-performance work sessions and precise
-							caffeine extractions.
+							Kunjungi ruang utama kami. Dirancang untuk sesi kerja tangguh dan ekstraksi kafein presisi.
 						</p>
 
 						<div class="mt-8 space-y-8">
@@ -577,7 +574,7 @@
 								rel="noopener noreferrer"
 								class="inline-block w-full bg-primary px-8 py-4 text-center font-headline text-sm font-bold tracking-widest text-white transition-all active:scale-95"
 							>
-								GET DIRECTIONS
+								DAPATKAN PETUNJUK ARAH
 							</a>
 						</div>
 					</div>
@@ -613,15 +610,15 @@
 
 			<div>
 				<h5 class="font-headline text-[10px] font-bold tracking-widest uppercase opacity-40">
-					Operating Hours
+					Jam Operasional
 				</h5>
 				<div class="mt-8 space-y-4 font-body text-sm">
 					<div class="flex justify-between">
-						<span class="opacity-60">MON - FRI</span>
+						<span class="opacity-60">SEN - JUM</span>
 						<span>08:00 — 22:00</span>
 					</div>
 					<div class="flex justify-between border-t border-on-primary/10 pt-4">
-						<span class="opacity-60">SAT - SUN</span>
+						<span class="opacity-60">SAB - MIN</span>
 						<span>07:00 — 23:00</span>
 					</div>
 				</div>
@@ -630,8 +627,8 @@
 			<div class="flex flex-col items-end space-y-8">
 				<div class="flex space-x-8 font-headline text-[10px] font-bold tracking-widest uppercase">
 					<a href="#instagram" class="hover:text-primary">Instagram</a>
-					<a href="#privacy" class="hover:text-primary">Privacy</a>
-					<a href="#terms" class="hover:text-primary">Terms</a>
+					<a href="#privacy" class="hover:text-primary">Privasi</a>
+					<a href="#terms" class="hover:text-primary">Ketentuan</a>
 				</div>
 				<p class="font-body text-[10px] tracking-widest uppercase opacity-40">
 					© 2024 NAMANA COFFEE. MAKASSAR, INDONESIA.

@@ -16,15 +16,15 @@
 
 		<div class="hidden space-x-8 font-label text-xs font-bold tracking-widest uppercase md:flex">
 			<a href="/menu" class="transition-colors hover:text-primary">Menu</a>
-			<a href="/#location" class="transition-colors hover:text-primary">Location</a>
-			<a href="/#catering" class="transition-colors hover:text-primary">Catering</a>
+			<a href="/#location" class="transition-colors hover:text-primary">Lokasi</a>
+			<a href="/#catering" class="transition-colors hover:text-primary">Katering</a>
 		</div>
 
 		<div class="flex items-center space-x-6">
 			<button
 				class="bg-primary px-6 py-2 font-headline text-xs font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
 			>
-				ORDER NOW
+				PESAN SEKARANG
 			</button>
 		</div>
 	</div>
@@ -55,13 +55,13 @@
 						<p
 							class="mb-1 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase opacity-60"
 						>
-							Caffeine Level
+							Tingkat Kafein
 						</p>
 						<div class="flex w-fit items-center gap-2 bg-primary p-2 text-on-primary">
 							<Zap size={24} />
 							<div>
 								<p class="font-headline text-sm font-medium tracking-tight uppercase">
-									{product.details?.caffeine || 'High'}
+									{product.details?.caffeine || 'Tinggi'}
 								</p>
 							</div>
 						</div>
@@ -70,12 +70,12 @@
 						<p
 							class="mb-1 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase opacity-60"
 						>
-							Flavor Profile
+							Profil Rasa
 						</p>
 						<div class="flex w-fit items-center gap-2 bg-primary p-2 text-on-primary">
 							<Sparkles size={24} />
 							<p class="font-headline text-sm font-medium tracking-tight uppercase">
-								{product.details?.flavor || 'Creamy & Bold'}
+								{product.details?.flavor || 'Krim & Tebal'}
 							</p>
 						</div>
 					</div>
@@ -85,13 +85,13 @@
 					<button
 						class="bg-primary px-10 py-5 font-headline text-sm font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
 					>
-						ORDER NOW
+						PESAN SEKARANG
 					</button>
 					<a
 						href="/menu"
 						class="bg-surface-container-highest px-10 py-5 font-headline text-sm font-bold tracking-widest text-on-surface transition-all hover:bg-surface-dim active:scale-95"
 					>
-						VIEW MENU
+						LIHAT MENU
 					</a>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 					class="absolute bottom-0 left-0 hidden translate-y-1/2 bg-primary p-8 text-on-primary shadow-2xl md:block md:translate-y-0"
 				>
 					<p class="mb-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-80">
-						Starting at
+						Mulai dari
 					</p>
 					<p class="font-headline text-4xl leading-none font-black tracking-tighter">
 						{product.price}
@@ -122,7 +122,7 @@
 
 				<div class="mt-8 text-primary md:hidden">
 					<p class="mb-2 font-label text-[10px] font-bold tracking-widest uppercase opacity-80">
-						Starting at
+						Mulai dari
 					</p>
 					<p class="font-headline text-4xl leading-none font-black tracking-tighter">
 						{product.price}
@@ -139,13 +139,13 @@
 				<p
 					class="mb-4 font-label text-[10px] font-bold tracking-[0.3em] text-primary uppercase md:mb-8"
 				>
-					Vibe Notes
+					Catatan Suasana
 				</p>
 				<h2
 					class="max-w-2xl font-headline text-3xl leading-tight font-black tracking-tighter text-on-surface md:text-5xl"
 				>
 					{product.vibeNotes ||
-						'The perfect companion for deep work. Smooth, bold, and designed to fuel your high-performance morning.'}
+						'Teman sempurna untuk kerja fokus. Halus, tebal, dan dirancang untuk memacu pagi produktif Anda.'}
 				</h2>
 			</div>
 		</div>
@@ -157,22 +157,22 @@
 			<h2
 				class="mb-8 font-headline text-6xl font-black tracking-tighter uppercase italic md:text-8xl"
 			>
-				Fuel your inbox.
+				Ikuti Berita Kami.
 			</h2>
 			<p class="mx-auto mb-12 max-w-xl font-body text-sm opacity-80 md:text-lg">
-				Get exclusive access to secret drops and early entry to our co-working spaces.
+				Dapatkan akses eksklusif ke rilis rahasia dan akses awal ke ruang co-working kami.
 			</p>
 
 			<div class="relative mx-auto max-w-xl">
 				<input
 					type="email"
-					placeholder="ENTER YOUR EMAIL"
+					placeholder="MASUKKAN EMAIL ANDA"
 					class="w-full border-b-2 border-white bg-transparent py-4 text-center font-headline font-bold tracking-widest uppercase transition-colors placeholder:text-white focus:border-white focus:outline-none"
 				/>
 				<button
 					class="mt-8 font-headline text-sm font-black tracking-[0.2em] uppercase transition-opacity hover:opacity-70"
 				>
-					Join
+					Gabung
 				</button>
 			</div>
 		</div>
@@ -189,19 +189,19 @@
 				<p
 					class="mt-8 max-w-xs font-body text-[10px] leading-relaxed tracking-widest uppercase opacity-60"
 				>
-					© 2024 THE COBALT EDITORIAL. ALL RIGHTS RESERVED.
+					© 2024 THE COBALT EDITORIAL. HAK CIPTA DILINDUNGI KHAS.
 				</p>
 			</div>
 
 			<div class="grid grid-cols-2 gap-8 md:col-span-2">
 				<div class="space-y-4">
 					<p class="font-label text-[10px] font-black tracking-[0.2em] uppercase opacity-40">
-						Navigation
+						Navigasi
 					</p>
 					<nav class="flex flex-col space-y-2 font-body text-xs tracking-widest uppercase">
-						<a href="/" class="transition-colors hover:text-primary">Experience</a>
+						<a href="/" class="transition-colors hover:text-primary">Pengalaman</a>
 						<a href="/menu" class="transition-colors hover:text-primary">Menu</a>
-						<a href="/#locations" class="transition-colors hover:text-primary">Locations</a>
+						<a href="/#locations" class="transition-colors hover:text-primary">Lokasi</a>
 					</nav>
 				</div>
 				<div class="space-y-4">
@@ -209,11 +209,11 @@
 						Legal
 					</p>
 					<nav class="flex flex-col space-y-2 font-body text-xs tracking-widest uppercase">
-						<a href="#privacy" class="transition-colors hover:text-primary">Privacy</a>
-						<a href="#terms" class="transition-colors hover:text-primary">Terms</a>
-						<a href="#sustainability" class="transition-colors hover:text-primary">Sustainability</a
+						<a href="#privacy" class="transition-colors hover:text-primary">Privasi</a>
+						<a href="#terms" class="transition-colors hover:text-primary">Syarat & Ketentuan</a>
+						<a href="#sustainability" class="transition-colors hover:text-primary">Keberlanjutan</a
 						>
-						<a href="#press" class="transition-colors hover:text-primary">Press</a>
+						<a href="#press" class="transition-colors hover:text-primary">Pers</a>
 					</nav>
 				</div>
 			</div>

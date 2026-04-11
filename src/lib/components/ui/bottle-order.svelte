@@ -100,7 +100,7 @@
 				<div class="mb-4 flex items-center gap-3">
 					<CupSoda class="text-primary" size={20} />
 					<span class="font-headline text-[10px] font-bold tracking-[0.3em] text-primary uppercase">
-						Grab & Go
+						Bawa & Pergi
 					</span>
 				</div>
 				<h2
@@ -134,7 +134,7 @@
 						class="flex items-center gap-2 bg-[#25D366] px-6 py-3 font-headline text-xs font-bold tracking-widest text-white transition-all hover:bg-[#1fb855] active:scale-95"
 					>
 						<MessageCircle size={16} />
-						ORDER
+						PESAN
 					</button>
 				</div>
 			{/if}
@@ -244,7 +244,7 @@
 			>
 				<span class="material-symbols-outlined text-2xl text-primary">local_shipping</span>
 				<div>
-					<p class="font-headline text-xs font-bold tracking-wider uppercase">Freshly Made</p>
+					<p class="font-headline text-xs font-bold tracking-wider uppercase">Dibuat Segar</p>
 					<p class="mt-0.5 text-xs text-on-surface-variant">Dibuat fresh setiap hari</p>
 				</div>
 			</div>
@@ -253,7 +253,7 @@
 			>
 				<span class="material-symbols-outlined text-2xl text-primary">verified</span>
 				<div>
-					<p class="font-headline text-xs font-bold tracking-wider uppercase">Premium Beans</p>
+					<p class="font-headline text-xs font-bold tracking-wider uppercase">Biji Premium</p>
 					<p class="mt-0.5 text-xs text-on-surface-variant">100% biji kopi pilihan</p>
 				</div>
 			</div>
@@ -262,7 +262,7 @@
 			>
 				<span class="material-symbols-outlined text-2xl text-primary">inventory_2</span>
 				<div>
-					<p class="font-headline text-xs font-bold tracking-wider uppercase">Stock Ready</p>
+					<p class="font-headline text-xs font-bold tracking-wider uppercase">Stok Tersedia</p>
 					<p class="mt-0.5 text-xs text-on-surface-variant">Kemasan 500ml hemat</p>
 				</div>
 			</div>
@@ -285,7 +285,7 @@
 					class="flex items-center gap-2 bg-[#25D366] px-6 py-3 font-headline text-xs font-bold tracking-widest text-white transition-all hover:bg-[#1fb855] active:scale-95"
 				>
 					<MessageCircle size={16} />
-					ORDER
+					PESAN
 				</button>
 			</div>
 		{/if}

@@ -30,18 +30,18 @@
 
 		<div class="hidden space-x-8 font-label text-xs font-bold uppercase tracking-widest md:flex">
 			<a href="/menu" class="border-b-2 border-primary text-primary">Menu</a>
-			<a href="/#location" class="hover:text-primary transition-colors">Location</a>
-			<a href="/#catering" class="hover:text-primary transition-colors">Catering</a>
+			<a href="/#location" class="hover:text-primary transition-colors">Lokasi</a>
+			<a href="/#catering" class="hover:text-primary transition-colors">Katering</a>
 		</div>
 
 		<div class="flex items-center space-x-6">
 			<a href="#loyalty" class="hidden font-label text-xs font-bold uppercase tracking-widest md:block"
-				>Join Loyalty</a
+				>Gabung Loyalty</a
 			>
 			<button
 				class="bg-primary px-6 py-2 font-headline text-xs font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
 			>
-				ORDER NOW
+				PESAN SEKARANG
 			</button>
 		</div>
 	</div>
@@ -52,7 +52,7 @@
 		<!-- Click-bait Header -->
 		<div class="mb-12 text-center md:text-left">
 			<h1 class="font-headline text-4xl font-black tracking-tighter text-primary uppercase md:text-6xl">
-				THE PERFORMANCE ARCHIVE
+				KOLOM PERFORMA
 			</h1>
 		</div>
 
@@ -63,7 +63,7 @@
 				<input
 					type="text"
 					bind:value={searchQuery}
-					placeholder="SEARCH MENU..."
+					placeholder="CARI MENU..."
 					class="w-full border-2 border-primary bg-transparent px-6 py-4 md:py-6 font-headline text-xl font-bold tracking-tight placeholder:text-primary/30 focus:outline-none focus:ring-0 md:text-2xl"
 				/>
 			</div>
@@ -115,7 +115,7 @@
 						
 						{#if product.special}
 							<div class="absolute bottom-3 right-3 z-10 bg-surface-container-lowest px-2 py-0.5 font-headline text-[7px] font-bold tracking-widest text-primary shadow-xl">
-								EDITOR'S CHOICE
+								PILIHAN EDITOR
 							</div>
 						{/if}
 
@@ -148,7 +148,7 @@
 			{#if filteredProducts.length === 0}
 				<div class="col-span-full py-24 text-center">
 					<p class="font-headline text-2xl font-black text-on-surface-variant opacity-40 uppercase tracking-widest">
-						No performance caffeine found.
+						Kafein performa tidak ditemukan.
 					</p>
 				</div>
 			{/if}
@@ -169,8 +169,8 @@
 			<div class="flex flex-col items-end space-y-8 md:col-span-2">
 				<div class="flex space-x-8 font-headline text-[10px] font-bold tracking-widest uppercase">
 					<a href="#instagram" class="hover:text-primary transition-colors">Instagram</a>
-					<a href="#privacy" class="hover:text-primary transition-colors">Privacy</a>
-					<a href="#terms" class="hover:text-primary transition-colors">Terms</a>
+					<a href="#privacy" class="hover:text-primary transition-colors">Privasi</a>
+					<a href="#terms" class="hover:text-primary transition-colors">Ketentuan</a>
 				</div>
 				<p class="font-body text-[10px] tracking-widest uppercase opacity-40">
 					© 2024 NAMANA COFFEE. MAKASSAR, INDONESIA.
