@@ -6,6 +6,14 @@
 	import { fly } from 'svelte/transition';
 
 	let activeCategory = $state('Espresso');
+	let activeProduct = $state();
+
+	$effect(() => {
+		const filtered = products.filter((p) => p.category === activeCategory || activeCategory === 'Espresso');
+		if (!activeProduct || !filtered.some((p) => p.id === activeProduct.id)) {
+			activeProduct = filtered[0];
+		}
+	});
 
 	const categories = ['Espresso', 'Cold Brew', 'Pour Over'];
 
@@ -265,8 +273,87 @@
 				</div>
 			</div>
 
-			<!-- Product Grid -->
-			<div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+			<!-- Mobile Product Showcase -->
+			<div class="mt-6 block md:hidden">
+				{#if activeProduct}
+					<!-- Main Highlighted Product -->
+					<div class="group relative mb-6 bg-white p-4 pb-6 shadow-sm transition-all">
+						{#if activeProduct.tag}
+							<span
+								class="absolute top-6 right-6 z-10 bg-primary px-2 py-1 font-headline text-[8px] font-bold text-on-primary"
+							>
+								{activeProduct.tag}
+							</span>
+						{/if}
+						<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-high">
+							{#key activeProduct.id}
+								<img
+									src={activeProduct.image}
+									alt={activeProduct.name}
+									class="h-full w-full animate-in zoom-in-95 fade-in object-cover duration-500"
+								/>
+							{/key}
+						</div>
+						<div class="mt-6 flex flex-col">
+							<div
+								class="flex items-end justify-between border-b border-dashed border-outline-variant/15 pb-4"
+							>
+								<div>
+									<h3
+										class="font-headline text-2xl leading-none font-black tracking-tighter text-primary uppercase"
+									>
+										{activeProduct.name}
+									</h3>
+									<p class="mt-2 font-headline text-sm font-bold text-on-surface-variant italic">
+										"{activeProduct.category} Selection"
+									</p>
+								</div>
+								<span
+									class="font-headline text-[10px] font-bold tracking-widest text-on-surface-variant/50 uppercase"
+									>2026</span
+								>
+							</div>
+							<div class="mt-4 flex items-center justify-between">
+								<span class="font-headline text-sm font-bold text-on-surface-variant"
+									>{activeProduct.price}</span
+								>
+								<button
+									class="flex h-8 w-8 cursor-pointer items-center justify-center bg-primary text-on-primary transition-all hover:bg-primary-dim active:scale-90"
+								>
+									<span class="material-symbols-outlined text-sm">add</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				{/if}
+
+				<!-- Thumbnails Carousel -->
+				<div
+					class="hide-scrollbar flex gap-4 overflow-x-auto px-1 pt-2 pb-6 snap-x snap-mandatory"
+					style="scrollbar-width: none; -ms-overflow-style: none;"
+				>
+					{#each products.filter((p) => p.category === activeCategory || activeCategory === 'Espresso') as product (product.id)}
+						<button
+							onclick={() => (activeProduct = product)}
+							class="w-[110px] shrink-0 cursor-pointer snap-start flex-col items-center bg-white p-2 pb-3 shadow-sm transition-all {activeProduct?.id ===
+							product.id
+								? 'scale-105 ring-2 ring-primary ring-offset-2 ring-offset-surface opacity-100 grayscale-0'
+								: 'hover:scale-105 hover:shadow-md grayscale-[0.8] opacity-70 hover:grayscale-0 hover:opacity-100'}"
+						>
+							<div class="relative aspect-square w-full overflow-hidden bg-surface-container-high">
+								<img src={product.image} alt={product.name} class="h-full w-full object-cover" />
+							</div>
+							<span
+								class="mt-3 block w-full truncate text-center font-headline text-[9px] font-bold tracking-widest text-primary uppercase"
+								>{product.name}</span
+							>
+						</button>
+					{/each}
+				</div>
+			</div>
+
+			<!-- Desktop Product Grid -->
+			<div class="mt-6 hidden gap-8 md:grid lg:grid-cols-3">
 				{#each products.filter((p) => p.category === activeCategory || activeCategory === 'Espresso') as product (product.id)}
 					<div class="group relative bg-surface-container-low p-6 transition-all hover:bg-white">
 						{#if product.tag}

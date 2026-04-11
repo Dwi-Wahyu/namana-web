@@ -141,10 +141,13 @@
 		</div>
 
 		<!-- Products Grid -->
-		<div class="grid gap-8 md:grid-cols-2">
+		<div 
+			class="flex gap-4 overflow-x-auto pb-6 pt-2 px-1 snap-x snap-mandatory md:grid md:grid-cols-2 md:overflow-visible md:pb-0 md:px-0 md:gap-8"
+			style="scrollbar-width: none; -ms-overflow-style: none;"
+		>
 			{#each bottles as bottle (bottle.id)}
 				<div
-					class="group relative overflow-hidden border border-outline-variant/10 bg-surface-container-lowest transition-all duration-500 hover:border-primary/20 hover:shadow-xl"
+					class="w-[85vw] shrink-0 snap-center md:w-auto group relative overflow-hidden border border-outline-variant/10 bg-surface-container-lowest transition-all duration-500 hover:border-primary/20 hover:shadow-xl"
 				>
 					<!-- Tag Badge -->
 					{#if bottle.tag}

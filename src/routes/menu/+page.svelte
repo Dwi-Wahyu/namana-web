@@ -26,7 +26,7 @@
 	class="glass-nav fixed top-0 z-50 w-full border-b border-outline-variant/15 bg-surface-container-lowest/70 px-6 py-4 md:px-12"
 >
 	<div class="mx-auto flex max-w-7xl items-center justify-between">
-		<a href="/" class="font-headline text-2xl font-black tracking-tighter text-primary">NAMANA</a>
+		<img src="/logo.png" alt="" class="h-8 w-auto" />
 
 		<div class="hidden space-x-8 font-label text-xs font-bold uppercase tracking-widest md:flex">
 			<a href="/menu" class="border-b-2 border-primary text-primary">Menu</a>
