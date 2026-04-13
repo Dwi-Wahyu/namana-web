@@ -720,6 +720,7 @@
 				<p class="font-body text-[10px] tracking-widest uppercase opacity-40">
 					© 2024 NAMANA COFFEE. MAKASSAR, INDONESIA.
 				</p>
+				<p class="uppercase">Powered By Solnetz ID</p>
 			</div>
 		</div>
 	</div>

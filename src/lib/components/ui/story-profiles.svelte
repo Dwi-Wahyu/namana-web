@@ -10,27 +10,27 @@
 			color: 'from-[#feda75] via-[#fa7e1e] to-[#d62976]',
 			stories: [
 				{
-					src: '/product/501226394_18509736802017362_5944014104648471794_n.jpg',
-					caption: 'Cobalt Dirty Latte 💙',
+					src: '/stories/482513160_18492729031017362_2792031088351563034_n.jpg',
+					caption: 'Vibes hari ini!',
 					time: '2h'
 				},
 				{
-					src: '/scenery/498280138_2167924453649630_8383188952732617144_n.jpg',
-					caption: 'Vibes on point ✨',
+					src: '/stories/AQO0RG8gcheApQXlG_e8k4qhfet1TtXBvLyaQlGdWtLhgBD48spu5obuxRc0ZecNbbmLLvM_tgmqb_NEvYiB5JYTwUkl-x7DIT4nvBs.mp4',
+					caption: 'Seru banget',
 					time: '4h'
 				},
 				{
-					src: '/product/435688077_18429630226017362_896776942331266593_n.jpg',
+					src: '/stories/482612249_18492997795017362_8716892235057781679_n.jpg',
 					caption: 'Kunjungan ke-3! ☕',
 					time: '1d'
 				},
 				{
-					src: '/product/521163956_18519876091017362_4302785918758206052_n.jpg',
+					src: '/stories/AQPuwCDuPw__3qnPunakk1wxoULcgC9tmWkHinwiEi3dbA-xpGRhaYmsln_9tAGpxEy_MIie9-WjrasHnAvQqG0tJ4gmEBj_uacgaOg.mp4',
 					caption: 'Sore vibe 🌇',
 					time: '2d'
 				},
 				{
-					src: '/feature/624949019_2349820035457438_8495859316638335246_n.jpg',
+					src: '/stories/482822248_18493000372017362_6997992522644619515_n.jpg',
 					caption: 'Almost there! 4/5 🎉',
 					time: '3d'
 				}
@@ -43,22 +43,22 @@
 			color: 'from-[#833ab4] via-[#fd1d1d] to-[#fcb045]',
 			stories: [
 				{
-					src: '/scenery/502734466_1416529052708555_837181136922468108_n.jpg',
+					src: '/stories/488247201_18499293394017362_6990455101710028671_n.jpg',
 					caption: 'Workspace vibes 🖥️',
 					time: '1h'
 				},
 				{
-					src: '/product/473903495_18484460062017362_7702279212235018828_n.jpg',
+					src: '/stories/AQPV4r1VLa0RmE4mxiJHNdUuwgIC983kCg1d6YMjIQkn7YAeGxDdJ9ZbaosaRpkdqx6yqBBcR2r3P5dPijDRozB8WweanBpA6rRkRQc.mp4',
 					caption: 'Cold brew day 🧊',
 					time: '5h'
 				},
 				{
-					src: '/product/515105493_18517103239017362_614143355468016190_n.jpg',
+					src: '/stories/489818917_18500307790017362_1988438668208882212_n.jpg',
 					caption: 'V60 perfection 🫶',
 					time: '1d'
 				},
 				{
-					src: '/feature/497473078_18507098299017362_7767216781664247105_n.jpg',
+					src: '/stories/491467794_18502106560017362_2665616660888878220_n.jpg',
 					caption: 'Fourth visit! 🔥',
 					time: '2d'
 				},
@@ -474,15 +474,36 @@
 			storyProgress = 0;
 			startStoryTimer();
 		} else {
-			closeStories();
+			const currentIndex = profiles.findIndex((p) => p.id === activeProfile!.id);
+			if (currentIndex < profiles.length - 1) {
+				activeProfile = profiles[currentIndex + 1];
+				activeStoryIndex = 0;
+				storyProgress = 0;
+				startStoryTimer();
+			} else {
+				closeStories();
+			}
 		}
 	}
 
 	function prevStory() {
+		if (!activeProfile) return;
 		if (activeStoryIndex > 0) {
 			activeStoryIndex--;
 			storyProgress = 0;
 			startStoryTimer();
+		} else {
+			const currentIndex = profiles.findIndex((p) => p.id === activeProfile!.id);
+			if (currentIndex > 0) {
+				activeProfile = profiles[currentIndex - 1];
+				activeStoryIndex = activeProfile.stories.length - 1;
+				storyProgress = 0;
+				startStoryTimer();
+			} else {
+				// Replay the first story
+				storyProgress = 0;
+				startStoryTimer();
+			}
 		}
 	}
 
@@ -565,11 +586,20 @@
 							<div
 								class="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[#2e5bff] bg-surface-container-high md:h-[72px] md:w-[72px]"
 							>
-								<img
-									src={profile.stories[0].src}
-									alt={profile.username}
-									class="h-full w-full rounded-full object-cover"
-								/>
+								{#if profile.stories[0].src.endsWith('.mp4')}
+									<video
+										src={profile.stories[0].src}
+										muted
+										playsinline
+										class="h-full w-full rounded-full object-cover"
+									></video>
+								{:else}
+									<img
+										src={profile.stories[0].src}
+										alt={profile.username}
+										class="h-full w-full rounded-full object-cover"
+									/>
+								{/if}
 							</div>
 						</div>
 						<!-- Story count indicator -->
@@ -704,13 +734,25 @@
 			role="button"
 			tabindex="0"
 		>
-			<!-- Story Image -->
+			<!-- Story Image/Video -->
 			{#key activeStoryIndex}
-				<img
-					src={activeProfile.stories[activeStoryIndex].src}
-					alt={activeProfile.stories[activeStoryIndex].caption}
-					class="story-image absolute inset-0 h-full w-full object-cover"
-				/>
+				{#if activeProfile.stories[activeStoryIndex].src.endsWith('.mp4')}
+					<!-- svelte-ignore a11y_media_has_caption -->
+					<video
+						src={activeProfile.stories[activeStoryIndex].src}
+						autoplay
+						muted
+						loop
+						playsinline
+						class="story-image absolute inset-0 h-full w-full object-cover"
+					></video>
+				{:else}
+					<img
+						src={activeProfile.stories[activeStoryIndex].src}
+						alt={activeProfile.stories[activeStoryIndex].caption}
+						class="story-image absolute inset-0 h-full w-full object-cover"
+					/>
+				{/if}
 			{/key}
 
 			<!-- Top Gradient -->
@@ -747,11 +789,20 @@
 						<div
 							class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-black bg-surface-container-high"
 						>
-							<img
-								src={activeProfile.stories[0].src}
-								alt={activeProfile.username}
-								class="h-full w-full rounded-full object-cover"
-							/>
+							{#if activeProfile.stories[0].src.endsWith('.mp4')}
+								<video
+									src={activeProfile.stories[0].src}
+									muted
+									playsinline
+									class="h-full w-full rounded-full object-cover"
+								></video>
+							{:else}
+								<img
+									src={activeProfile.stories[0].src}
+									alt={activeProfile.username}
+									class="h-full w-full rounded-full object-cover"
+								/>
+							{/if}
 						</div>
 					</div>
 					<span class="text-sm font-semibold text-white drop-shadow-sm">
