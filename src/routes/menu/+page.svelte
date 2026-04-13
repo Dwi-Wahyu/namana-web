@@ -77,7 +77,7 @@
 			<p class="font-label text-xs font-bold uppercase tracking-widest text-primary/60 mb-1 md:hidden">— Namana Coffee</p>
 			<!-- Desktop heading (original style) -->
 			<h1 class="hidden font-headline text-4xl font-black tracking-tighter text-primary uppercase md:block md:text-6xl">
-				KOLOM PERFORMA
+				DAFTAR MENU
 			</h1>
 			<!-- Mobile heading -->
 			<h1 class="font-headline text-3xl font-black tracking-tighter text-on-surface uppercase md:hidden">

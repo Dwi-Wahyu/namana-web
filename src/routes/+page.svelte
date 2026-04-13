@@ -245,8 +245,8 @@
 			<!-- Header & Filters -->
 			<div class="flex flex-col gap-10">
 				<div class="max-w-2xl">
-					<h2 class="font-headline text-5xl font-black tracking-tighter italic md:text-7xl">
-						MENU <span class="text-primary">UNGGULAN.</span>
+					<h2 class="font-headline text-5xl font-black tracking-tighter md:text-7xl">
+						MENU <br> <span class="text-primary italic">UNGGULAN.</span>
 					</h2>
 					<p class="mt-4 font-body text-lg text-on-surface-variant/70">
 						Koleksi pilihan ekstraksi kopi terbaik dan racikan musiman yang dirancang untuk dinamika
@@ -515,7 +515,7 @@
 						Namana Untuk Bisnis
 					</span>
 					<h3 class="font-headline text-3xl font-black tracking-tighter uppercase">
-						ANGKAT ACARA ANDA
+						TINGKATKAN ACARA ANDA
 					</h3>
 					<form class="mt-12 space-y-8">
 						<div class="group">
@@ -575,7 +575,7 @@
 					<h2
 						class="mt-6 hidden font-headline text-5xl leading-tight font-black tracking-tighter md:block md:text-6xl"
 					>
-						KATERING KELILING<br />PREMIUM.
+						KATERING <br />PREMIUM.
 					</h2>
 					<p
 						class="mt-8 hidden max-w-lg font-body text-lg leading-relaxed text-on-surface-variant md:block"
@@ -608,8 +608,8 @@
 		<!-- Instagram Feed -->
 		<BentoGallery
 			imageItems={bentoImages}
-			title="DIPOTRET DI COBALT."
-			description="Koleksi lanskap memukau. Geser untuk eksplorasi, klik untuk memperbesar."
+			title="DIPOTRET DI TEMPAT."
+			description="Koleksi lanskap memukau. Klik untuk memperbesar."
 		/>
 
 		<!-- Location Section -->
