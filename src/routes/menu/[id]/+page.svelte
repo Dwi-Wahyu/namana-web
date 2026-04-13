@@ -8,7 +8,7 @@
 </script>
 
 <!-- Navigation -->
-<nav
+<nav 
 	class="glass-nav fixed top-0 z-50 hidden w-full border-b border-outline-variant/15 bg-surface-container-lowest/80 px-4 py-3 backdrop-blur-xl md:flex md:px-12 md:py-4"
 >
 	<div class="relative mx-auto flex max-w-7xl items-center justify-between gap-4">
@@ -18,8 +18,9 @@
 			<a href="/#location" class="transition-colors hover:text-primary">Lokasi</a>
 
 			<!-- Logo (tengah, absolute) -->
+			 <a href="/">
 			<img src="/logo.png" alt="Namana" class="h-7 w-auto md:h-8" />
-
+			</a>
 			<a href="/#catering" class="transition-colors hover:text-primary">Katering</a>
 			<a href="/#" class="transition-colors hover:text-primary">Pesan</a>
 		</div>
@@ -33,11 +34,16 @@
 	<section class="relative md:hidden">
 		<!-- Full-width image -->
 		<div class="relative h-[55vw] min-h-[260px] w-full overflow-hidden bg-surface-container-high">
+			<a href="/">
+
+			
 			<img
 				src={product.image}
 				alt={product.name}
 				class="h-full w-full object-cover"
 			/>
+			</a>
+
 			<!-- gradient overlay -->
 			<div
 				class="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent"

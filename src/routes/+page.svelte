@@ -225,11 +225,11 @@
 				Tempat perlindungan berkonsep digital di pusat Makassar. Ekstraksi presisi, minimalisme industrial, dan budaya kopi tanpa hambatan bagi kaum urban produktif.
 			</p>
 			<div class="mt-4 hidden flex-wrap justify-center gap-6 md:mt-14 md:flex">
-				<button
+				<a href="/menu"
 					class="rounded-full bg-primary px-12 py-5 font-headline text-sm font-bold tracking-widest text-on-primary transition-all hover:bg-primary-dim active:scale-95"
 				>
 					LIHAT MENU
-				</button>
+			</a>
 				<button
 					class="rounded-full border border-white/30 bg-white/5 px-12 py-5 font-headline text-sm font-bold tracking-widest text-white backdrop-blur-md transition-all hover:bg-white/10 active:scale-95"
 				>

@@ -53,7 +53,10 @@
 <!-- Navigation -->
 <nav class="glass-nav fixed top-0 z-50 w-full border-b border-outline-variant/15 bg-surface-container-lowest/80 px-6 py-4 md:px-12 backdrop-blur-md">
 	<div class="mx-auto flex max-w-7xl items-center justify-between">
+	<a href="/">
+	
 		<img src="/logo.png" alt="Namana Coffee" class="h-8 w-auto" />
+	</a>
 		<div class="hidden space-x-8 font-label text-xs font-bold uppercase tracking-widest md:flex">
 			<a href="/menu" class="border-b-2 border-primary text-primary">Menu</a>
 			<a href="/#location" class="hover:text-primary transition-colors">Lokasi</a>
