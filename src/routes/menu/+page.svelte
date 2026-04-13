@@ -57,10 +57,10 @@
 	
 		<img src="/logo.png" alt="Namana Coffee" class="h-8 w-auto" />
 	</a>
-		<div class="hidden space-x-8 font-label text-xs font-bold uppercase tracking-widest md:flex">
+		<div class="hidden font-label text-xs font-bold uppercase tracking-widest md:flex">
 			<a href="/menu" class="border-b-2 border-primary text-primary">Menu</a>
-			<a href="/#location" class="hover:text-primary transition-colors">Lokasi</a>
-			<a href="/#catering" class="hover:text-primary transition-colors">Katering</a>
+			<a href="/#location" class="hover:text-primary transition-colors ml-8">Lokasi</a>
+			<a href="/#catering" class="hover:text-primary transition-colors ml-8">Katering</a>
 		</div>
 		<div class="flex items-center space-x-6">
 			<a href="#loyalty" class="hidden font-label text-xs font-bold uppercase tracking-widest md:block">Gabung Loyalty</a>

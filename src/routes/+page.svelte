@@ -97,8 +97,8 @@
 
 	const navLinks = [
 		{ name: 'Menu', href: '#menu' },
+		{ name: 'Katering', href: '#catering' },
 		{ name: 'Lokasi', href: '#location' },
-		{ name: 'Katering', href: '#catering' }
 	];
 </script>
 
@@ -115,21 +115,21 @@
 		class="mx-auto flex w-full max-w-7xl shrink-0 items-center justify-between px-6 py-4 md:px-12 md:py-6"
 	>
 		<!-- Left: Logo -->
-		<div class="flex flex-1 justify-start">
+		<a href="/#hero">
 			<img src="/logo.png" alt="Namana Logo" class="h-8 w-auto brightness-0 invert" />
-		</div>
+		</a>
 
 		<!-- Center: Desktop Menu -->
 		<div
-			class="hidden flex-1 items-center justify-center space-x-8 font-label text-xs font-bold tracking-widest text-white/90 uppercase md:flex"
+			class="hidden items-center justify-center font-label text-xs font-bold tracking-widest text-white/90 uppercase md:flex"
 		>
 			{#each navLinks as link (link.name)}
-				<a href={link.href} class="transition-colors hover:text-white">{link.name}</a>
+				<a href={link.href} class="transition-colors hover:text-white ml-8">{link.name}</a>
 			{/each}
 		</div>
 
 		<!-- Right: Desktop Reservasi & Mobile Toggle -->
-		<div class="flex flex-1 items-center justify-end gap-4">
+		<div class="flex items-center justify-end gap-4">
 			<button
 				class="hidden px-6 py-2 font-headline text-xs font-bold tracking-widest transition-all active:scale-95 md:block {isScrolled
 					? 'bg-white text-primary hover:bg-white/90'
@@ -194,6 +194,7 @@
 <main class="overflow-hidden">
 	<!-- Hero Section -->
 	<section
+		id="hero"
 		class="relative flex h-svh items-center justify-center overflow-hidden bg-black text-white"
 	>
 		<!-- Background Image with Overlay -->
