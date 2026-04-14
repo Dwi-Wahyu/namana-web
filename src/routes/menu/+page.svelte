@@ -14,7 +14,7 @@
 			const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
 			return matchesCategory && matchesSearch;
 		})
-	);
+	);	
 
 	function selectCategory(name: string) {
 		activeCategory = name;
